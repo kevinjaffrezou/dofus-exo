@@ -14,8 +14,9 @@
                     </li>
                 </ul>
             </div>
-            <TheButton class="--primary">Ajouter</TheButton>
+            <TheButton class="--primary" @click.native="addItem(selectedItem)">Ajouter</TheButton>
         </div>
+        {{getItem}}
     </div>
 </template>
 
@@ -32,6 +33,11 @@ export default {
                 img: require('~/assets/img/gelano@2x.png')
             }
         }
+    },
+    computed: {
+        getItem: function () {
+            return this.$store.getters.getItem
+        }  
     },
     async fetch() {
         this.dofusEquiments = await this.$http.$get('https://fr.dofus.dofapi.fr/equipments')
@@ -91,6 +97,9 @@ export default {
             this.selectedItem = item
             this.searchText = item.name
             this.items = []
+        },
+        addItem: function (item) {
+            this.$store.commit('addItemToInventory', item)
         }
     }
 }
