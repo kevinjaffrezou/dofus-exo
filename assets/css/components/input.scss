@@ -18,6 +18,16 @@
     }
 }
 
+// Remove arrows in input type number
+.c-input[type=number] {
+    -moz-appearance: textfield;
+}
+.c-input::-webkit-outer-spin-button,
+.c-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
 .c-addon-container {
     position: relative;
 	.c-icon {
