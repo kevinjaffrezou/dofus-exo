@@ -7,6 +7,18 @@
     width: 100%;
     transition: border-color $transition;
 
+    &.--lg {
+        height: 75px;
+        line-height: 75px;
+        font-weight: 600;
+        font-size: 64px;
+        text-align: center;
+    }
+
+    &.--no-border-radius-bottom {
+        border-radius: 2px 2px 0 0;
+    }
+
     &::placeholder {
         color: $grey20;
     }

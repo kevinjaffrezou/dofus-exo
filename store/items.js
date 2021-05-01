@@ -33,5 +33,10 @@ export const mutations = {
         })
         let itemIndex = state.inventory.map(function(e) { return e.id; }).indexOf(item.id);
         this._vm.$set(state.inventory, itemIndex, item);
+    },
+    refreshItemData(state, item) {
+        // Enable resfresh data in inventory component
+        let itemIndex = state.inventory.map(function(e) { return e.id; }).indexOf(item.id);
+        this._vm.$set(state.inventory, itemIndex, item);
     }
 }
