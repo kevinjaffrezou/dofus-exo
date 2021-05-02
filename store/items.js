@@ -1,42 +1,45 @@
 export const state = () => ({
-    inventory: [],
-    currentId: 0
+    items: []
 })
 
 export const getters = {
-    getInventory: (state) => {
-        return state.inventory
+    getItems: (state) => {
+        return state.items
     },
     getActiveItem: (state) => {
-        let ActiveItemIndex = state.inventory.map(function(e) { return e.active; }).indexOf(true);
-        return state.inventory[ActiveItemIndex]
+        let ActiveItemIndex = state.items.map(function(item) { return item.active; }).indexOf(true);
+        return state.items[ActiveItemIndex]
     }
 }
 
 export const mutations = {
-    addItemToInventory(state, item) {
-        state.inventory.forEach(element => element.active = false)
+    ADD_ITEM(state, item) {
+        state.items.forEach(element => element.active = false)
         item = Object.assign(item, {
             "attempts": 0,
-            "id": state.currentId++,
+            "id": '_' + Math.random().toString(36).substr(2, 9),
             "active": true,
-            "coutAcquisition": null,
-            "coutTenta": null,
-            "prixDeVente": null
+            "typeExo": "pa"
         })
-        state.inventory.unshift(item)
+        state.items.unshift(item)
     },
-    updateActiveItem(state, item) {
-        state.inventory.forEach(element => element.active = false)
-        item = Object.assign(item, {
-            "active": true
-        })
-        let itemIndex = state.inventory.map(function(e) { return e.id; }).indexOf(item.id);
-        this._vm.$set(state.inventory, itemIndex, item);
-    },
-    refreshItemData(state, item) {
-        // Enable resfresh data in inventory component
-        let itemIndex = state.inventory.map(function(e) { return e.id; }).indexOf(item.id);
-        this._vm.$set(state.inventory, itemIndex, item);
+    UPDATE_ITEM(state, {itemId, data}) {
+        // Search item index
+        let itemIndex = state.items.map(function(e) { return e.id; }).indexOf(itemId);
+        // Get item
+        let item = state.items[itemIndex]
+        // Update item data
+        item = Object.assign(item, data)
+        this._vm.$set(state.items, itemIndex, item);
     }
+}
+
+export const actions = {
+    updateActiveItem({state, commit}, id) {
+        state.items.forEach(element => element.active = false)
+        commit('UPDATE_ITEM', {
+            itemId: id,
+            data: {"active": true}
+        })
+    },
 }

@@ -3,10 +3,13 @@
         <h2 class="c-h2">Inventaire</h2>
         <div class="relative">
             <div class="c-card inventory u-shadow-default p-2 mt-2">
-                <button v-for="(item, index) in getInventory" :key="index" class="inventory__item p-2" :class="item.active ? 'is-active' : ''" @click="updateActiveItem(item)">
+                <button v-for="(item, index) in getItems" :key="index" class="inventory__item p-2" :class="item.active ? 'is-active' : ''" @click="updateActiveItem(item.id)">
                     <div class="flex justify-around items-center">
                         <img class="item__img" :src="item.img" alt="">
-                        <img class="type-exo" src="/img/pa.png" alt="">
+                        <div class="type-exo">
+                            <span v-if="item.typeExo === 'none'" class="c-icon icon-highlight_off_black_24dp"></span>
+                            <img v-else :src="'/img/'+item.typeExo+'.png'" alt="">
+                        </div>
                     </div>
                     
                     <p class="c-p text-xs mt-1 truncate">
@@ -25,13 +28,13 @@
 <script>
 export default {
     computed: {
-        getInventory: function () {
-            return this.$store.getters['items/getInventory']
+        getItems: function () {
+            return this.$store.getters['items/getItems']
         }
     },
     methods: {
-        updateActiveItem: function (item) {
-            this.$store.commit('items/updateActiveItem', item)
+        updateActiveItem: function (id) {
+            this.$store.dispatch('items/updateActiveItem', id)
         }
     }
 }
@@ -93,6 +96,24 @@ export default {
 }
 
 .type-exo {
-    height: 32px;
+    position: relative;
+    height: 35px;
+    width: 35px;
+
+    img,
+    .c-icon {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    img {
+        width: 32px;
+    }
+
+    .c-icon {
+        font-size: 24px;
+    }
 }
 </style>
