@@ -9,12 +9,23 @@
                 </div>
                 <div class="flex justify-end items-center">
                     <a href="javascript:void(0);" class="c-link">Statistiques</a>
-                    <TheButton icon="icon-add_black_24dp" class="--primary --stroked">Ajouter un exo</TheButton>
+                    <TheButton @click.native="openNewItem" icon="icon-add_black_24dp" class="--primary --stroked">Ajouter un exo</TheButton>
                 </div>
             </div>
         </div>
     </header>
 </template>
+
+<script>
+export default {
+    methods: {
+        openNewItem: function() {
+            if(this.$route.path !== '/') this.$router.push('/')
+            this.$store.commit('OPEN_NEWITEM')
+        }
+    }
+}
+</script>
 
 <style lang="scss" scoped>
 $header-height: 70px;

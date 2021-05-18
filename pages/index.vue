@@ -6,7 +6,7 @@
       </div>
       <div class="col-span-10">
         <div class="container-730">
-          <NewItem :dofusEquiments="equipements"></NewItem>
+          <NewItem :dofusEquiments="equipements" v-if="getSettings.openNewItem"></NewItem>
           <FormItem></FormItem>
         </div>
       </div>
@@ -16,6 +16,14 @@
 
 <script>
 export default {
+    computed: {
+        getSettings: function () {
+            return this.$store.getters['getSettings']
+        }
+    },
+    destroyed() {
+      this.$store.commit('CLOSE_NEWITEM')
+    },
     async asyncData({ $content, params }) {
       const equipements = await $content('/').fetch()
       return { equipements }

@@ -1,5 +1,8 @@
 <template>
-    <div class="c-card p-6">
+    <div class="c-card p-6 mb-20">
+        <div class="c-card__buttons">
+            <button @click="close" class="c-card__button"><span class="c-icon icon-visibility_off_black_24dp"></span></button>
+        </div>
         <div class="flex flex-row items-center">
             <div class="c-badge">
                 <img :src="selectedItem.img" />
@@ -92,7 +95,11 @@ export default {
             if(!this.selectedItem.dofusId) return
             this.$store.commit('items/ADD_ITEM', item)
             this.selectedItem = {img: '/img/default-item.png'} // Remove current search
-            this.searchInput = ''
+            this.searchInput = '' // clear search input
+            this.$store.commit('CLOSE_NEWITEM') // Close composant
+        },
+        close: function() {
+            this.$store.commit('CLOSE_NEWITEM')
         }
     }
 }

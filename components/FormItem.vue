@@ -1,5 +1,5 @@
 <template>
-    <div class="c-card p-6 mt-20" v-if="getActiveItem">
+    <div class="c-card p-6" v-if="getActiveItem">
         <div class="flex">
             <div class="c-badge">
                 <img :src="getActiveItem.img" />
