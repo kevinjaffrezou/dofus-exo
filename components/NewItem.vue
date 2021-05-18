@@ -27,15 +27,12 @@ export default {
         return {
             searchInput: '',
             items: [],
-            dofusEquiments: {},
             selectedItem: {
                 img: '/img/default-item.png'
             }
         }
     },
-    async fetch() {
-        this.dofusEquiments = await this.$http.$get('https://fr.dofus.dofapi.fr/equipments')
-    },
+    props: ['dofusEquiments'],
     watch: {
         searchInput: function (text) {
             if (text !== this.selectedItem.name) {

@@ -6,7 +6,7 @@
       </div>
       <div class="col-span-10">
         <div class="container-730">
-          <NewItem></NewItem>
+          <NewItem :dofusEquiments="equipements"></NewItem>
           <FormItem></FormItem>
         </div>
       </div>
@@ -16,5 +16,9 @@
 
 <script>
 export default {
+    async asyncData({ $content, params }) {
+      const equipements = await $content('/').fetch()
+      return { equipements }
+    }
 }
 </script>
