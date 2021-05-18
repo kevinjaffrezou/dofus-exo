@@ -7,7 +7,9 @@ export const getters = {
         return state.items
     },
     getActiveItem: (state) => {
-        let ActiveItemIndex = state.items.map(function(item) { return item.active; }).indexOf(true);
+        let ActiveItemIndex = state.items.map(function (item) {
+            return item.active;
+        }).indexOf(true);
         return state.items[ActiveItemIndex]
     }
 }
@@ -23,9 +25,21 @@ export const mutations = {
         })
         state.items.unshift(item)
     },
-    UPDATE_ITEM(state, {itemId, data}) {
+    DELETE_ITEM(state, itemId) {
         // Search item index
-        let itemIndex = state.items.map(function(e) { return e.id; }).indexOf(itemId);
+        let itemIndex = state.items.map(function (e) {
+            return e.id;
+        }).indexOf(itemId);
+        state.items.splice(itemIndex, 1)
+    },
+    UPDATE_ITEM(state, {
+        itemId,
+        data
+    }) {
+        // Search item index
+        let itemIndex = state.items.map(function (e) {
+            return e.id;
+        }).indexOf(itemId);
         // Get item
         let item = state.items[itemIndex]
         // Update item data
@@ -35,11 +49,16 @@ export const mutations = {
 }
 
 export const actions = {
-    updateActiveItem({state, commit}, id) {
+    updateActiveItem({
+        state,
+        commit
+    }, id) {
         state.items.forEach(element => element.active = false)
         commit('UPDATE_ITEM', {
             itemId: id,
-            data: {"active": true}
+            data: {
+                "active": true
+            }
         })
     },
 }

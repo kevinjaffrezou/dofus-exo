@@ -13,6 +13,7 @@ export default {
 
 <style lang="scss" scoped>
 .button {
+    text-align: center;
     font-weight: 600;
     font-size: 20px;
     border-radius: 2px;

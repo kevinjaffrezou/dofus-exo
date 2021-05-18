@@ -1,5 +1,9 @@
 <template>
     <div class="c-card p-6" v-if="getActiveItem">
+        <div class="c-card__buttons">
+            <button class="c-card__button"><span class="c-icon icon-inventory_2_black_24dp"></span></button>
+            <button @click="deleteItem(getActiveItem.id)" class="c-card__button"><span class="c-icon icon-close_black_24dp"></span></button>
+        </div>
         <div class="flex">
             <div class="c-badge">
                 <img :src="getActiveItem.img" />
@@ -23,11 +27,13 @@
                 <label for="radio-none" class="c-input-label" :class="{ 'is-active': getActiveItem.typeExo === 'none' }"><span class="c-icon icon-highlight_off_black_24dp"></span></label>
             </div>
             <div class="row-span-4">
-                <input type="number" class="c-input --no-border-radius-bottom --lg" :value="getActiveItem.attempts" @input="updateItem('attempts', $event, true)">
+                <label class="c-p">Nb de tentatives :</label>
+                <input type="number" class="c-input --no-border-radius-bottom --lg mt-1" :value="getActiveItem.attempts" @input="updateItem('attempts', $event, true)">
                 <div class="flex">
-                    <button class="button" @click="incrementAttemps(1)">+1</button>
-                    <button class="button" @click="incrementAttemps(10)">+10</button>
+                    <button class="p-button" @click="incrementAttemps(1)">+1</button>
+                    <button class="p-button" @click="incrementAttemps(10)">+10</button>
                 </div>
+                <TheButton class="--primary mt-5 w-full">Passé !</TheButton>
             </div>
             <div class="text-right">
                 <label class="c-p">Coût d'acquisition</label>
@@ -73,13 +79,16 @@ export default {
                 itemId: vm.getActiveItem.id,
                 data: {[fieldName]: value}
             })
+        },
+        deleteItem: function(id) {
+            this.$store.commit('items/DELETE_ITEM', id)
         }
     }
 }
 </script>
 
 <style scoped lang="scss">
-.button {
+.p-button {
     width: 50%;
     height: 35px;
     line-height: 33px;
