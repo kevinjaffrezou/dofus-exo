@@ -19,11 +19,25 @@ export default {
     border-radius: 2px;
     height: 45px;
     padding: 0 24px;
+    background: $grey20;
+    color: #fff;
     transition: color $transition, background-color $transition;
 
     &:hover,
     &:focus {
         outline: 0;
+    }
+
+    &.--stroked {
+        border: solid 2px $grey20;
+        background: transparent;
+        color: $grey30;
+
+        &:hover,
+        &:focus {
+            background: $grey20;
+            color: #fff;
+        }
     }
 
     &.--icon-left {

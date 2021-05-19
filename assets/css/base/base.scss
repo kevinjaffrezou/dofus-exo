@@ -5,3 +5,10 @@ body {
     color: $grey30;
     -webkit-font-smoothing: antialiased;
 }
+
+hr {
+    border: 0;
+    margin: 0;
+    height: 1px;
+    background-color: $grey10;
+}

@@ -13,11 +13,11 @@
                     <h1 class="c-h1">{{getActiveItem.name}}</h1>
                 </div>
                 <div class="flex justify-between p-benefice-container">
-                    <div class="w-5/12" v-if="getActiveItem.typeExo !== 'none'">
+                    <div class="w-5/12" v-if="!(getActiveItem.typeExo === 'none' || !beneficeEstime)">
                         <p class="c-p">Bénéfice estimé</p>
                         <p class="c-p u-green10 text-sm text-right">{{beneficeEstime}}</p>
                     </div>
-                    <div class="w-5/12">
+                    <div class="w-5/12" v-if="benefice">
                         <p class="c-p">Bénéfice</p>
                         <p class="c-p u-red10 text-sm text-right">{{benefice}}</p>
                     </div>
@@ -40,30 +40,58 @@
             </div>
             <div class="row-span-4">
                 <label class="c-p">Nb de tentatives :</label>
-                <input type="number" class="c-input --no-border-radius-bottom --lg mt-1" :value="getActiveItem.attempts" @input="updateItem('attempts', $event, true)">
-                <div class="flex">
+                <input type="number" :class="{'u-blue40': getActiveItem.exoPasse}" class="c-input --no-border-radius-bottom --lg mt-1" :value="getActiveItem.attempts" @input="updateItem('attempts', $event, true)">
+                <div class="flex" :class="{'invisible': getActiveItem.exoPasse}">
                     <button class="p-button" @click="incrementAttemps(1)">+1</button>
                     <button class="p-button" @click="incrementAttemps(10)">+10</button>
                 </div>
-                <TheButton class="--primary mt-5 w-full">Passé !</TheButton>
+                <TheButton v-if="!getActiveItem.exoPasse" @click.native="updateItem('exoPasse', true)" class="--primary mt-5 w-full">Passé !</TheButton>
+                <TheButton v-if="getActiveItem.exoPasse" @click.native="updateItem('exoPasse', false)" class="--stroked mt-5 w-full">Annuler</TheButton>
             </div>
             <div class="text-right">
                 <label class="c-p">Coût d'acquisition</label>
             </div>
             <div>
-                <input type="number" class="c-input text-right" :value="getActiveItem.coutAcquisition" @input="updateItem('coutAcquisition', $event, true)">
+                <div class="c-addon-container --right">
+                    <input type="number" class="c-input text-right" :value="getActiveItem.coutAcquisition" @input="updateItem('coutAcquisition', $event, true)">
+                    <img src="/img/kamas.png" srcset="/img/kamas.png 1x, /img/kamas@2x.png 2x" alt="" class="c-img">
+                </div>
             </div>
             <div class="text-right">
                 <label class="c-p">Coût des runes pour 1 tenta</label>
             </div>
-            <div>
-                <input type="number" class="c-input text-right" :value="getActiveItem.coutTenta" @input="updateItem('coutTenta', $event, true)">
+            <div class="relative">
+                <div class="c-addon-container --right">
+                    <input type="number" class="c-input text-right" :value="getActiveItem.coutTenta" @input="updateItem('coutTenta', $event, true)">
+                    <img src="/img/kamas.png" srcset="/img/kamas.png 1x, /img/kamas@2x.png 2x" alt="" class="c-img">
+                </div>
+                <p class="p-cout-tenta-cent c-p text-xs" v-if="coutRunePassage"><span class="font-bold">{{coutRunePassage}}</span>k pour {{nbTentaMoyen}} tenta</p>
             </div>
             <div class="text-right">
                 <label class="c-p">Prix de vente</label>
             </div>
             <div>
-                <input type="number" class="c-input text-right" :value="getActiveItem.prixDeVente" @input="updateItem('prixDeVente', $event, true)">
+                <div class="c-addon-container --right">
+                    <input type="number" class="c-input text-right" :value="getActiveItem.prixDeVente" @input="updateItem('prixDeVente', $event, true)">
+                    <img src="/img/kamas.png" srcset="/img/kamas.png 1x, /img/kamas@2x.png 2x" alt="" class="c-img">
+                </div>
+            </div>
+        </div>
+        <div v-if="getActiveItem.exoPasse">
+            <hr class="mt-10 mb-8">
+            <div class="grid grid-cols-3 gap-x-10">
+                <div class="text-right">
+                    <label class="c-p">Screenshot URL du jet</label>
+                </div>
+                <div class="col-span-2">
+                    <div class="c-addon-container">
+                        <span class="c-icon icon-public_black_24dp" style="margin-top: -2px;"></span>
+                        <input type="text" class="c-input" @input="updateItem('url', $event.target.value)">
+                    </div>
+                </div>
+            </div>
+            <div class="flex justify-center">
+                <TheButton class="--primary mt-8">Sauvegarder</TheButton>
             </div>
         </div>
     </div>
@@ -80,11 +108,26 @@ export default {
         },
         beneficeEstime: function() {
             let coutTotalRunes = this.getActiveItem.coutTenta * this.nbTentaMoyen
-            return this.$nuxt.$numberWithSpaces(this.getActiveItem.prixDeVente - this.getActiveItem.coutAcquisition - coutTotalRunes)
+            let beneficeEstime = this.getActiveItem.prixDeVente - this.getActiveItem.coutAcquisition - coutTotalRunes
+            let beneficeEstimeFormated = this.$nuxt.$numberWithSpaces(beneficeEstime)
+            if(!isNaN(beneficeEstime)) {
+                return beneficeEstimeFormated
+            }
         },
         benefice: function() {
             let coutTotalRunes = this.getActiveItem.coutTenta * this.getActiveItem.attempts
-            return this.$nuxt.$numberWithSpaces(this.getActiveItem.prixDeVente - this.getActiveItem.coutAcquisition - coutTotalRunes)
+            let benefice = this.getActiveItem.prixDeVente - this.getActiveItem.coutAcquisition - coutTotalRunes
+            let beneficeFormated = this.$nuxt.$numberWithSpaces(benefice)
+            if(!isNaN(benefice)) {
+                return beneficeFormated
+            }
+        },
+        coutRunePassage: function() {
+            let coutRunePassage = this.getActiveItem.coutTenta * this.nbTentaMoyen
+            let coutRunePassageFormated = this.$nuxt.$numberWithSpaces(coutRunePassage)
+            if(!isNaN(coutRunePassage)) {
+                return coutRunePassageFormated
+            }
         }
     },
     methods: {
@@ -96,7 +139,13 @@ export default {
             })
         },
         updateItem: function(fieldName, value, isInt = false) {
-            if (isInt) value = parseInt(value.target.value)
+            if (isInt) {
+                if(value.target.value == '') {
+                    value = 0
+                } else {
+                    value = parseInt(value.target.value)
+                }
+            }
             let vm = this;
             this.$store.commit('items/UPDATE_ITEM', {
                 itemId: vm.getActiveItem.id,
@@ -111,6 +160,12 @@ export default {
 </script>
 
 <style scoped lang="scss">
+.p-cout-tenta-cent {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    transform: translateY(100%);
+}
 .p-benefice-container {
     max-width: 304px;
 }

@@ -82,16 +82,34 @@
 
 .c-addon-container {
     position: relative;
-	.c-icon {
-		color: $grey20;
-		font-size: 23px;
+
+	.c-icon,
+    .c-img {
 		position: absolute;
 		left: 8px;
 		top: 50%;
 		transform: translateY(-50%);
 		pointer-events: none;
+    }
+
+	.c-icon {
+		color: $grey20;
+		font-size: 23px;
         transition: color $transition;
 	}
+
+    &.--right {
+        .c-icon,
+        .c-img {
+            left: inherit;
+            right: 10px;
+        }
+
+        .c-input {
+            padding-left: inherit;
+            padding-right: 30px;
+        }
+    }
 
     .c-input {
         padding-left: 40px;

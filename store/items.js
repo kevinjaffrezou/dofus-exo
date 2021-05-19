@@ -21,7 +21,8 @@ export const mutations = {
             "attempts": 0,
             "id": '_' + Math.random().toString(36).substr(2, 9),
             "active": true,
-            "typeExo": "pa"
+            "typeExo": "pa",
+            "exoPasse": false
         })
         state.items.unshift(item)
     },
