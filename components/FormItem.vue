@@ -13,13 +13,13 @@
                     <h1 class="c-h1">{{getActiveItem.name}}</h1>
                 </div>
                 <div class="flex justify-between p-benefice-container">
-                    <div class="w-5/12" v-if="!(getActiveItem.typeExo === 'none' || !beneficeEstime)">
+                    <div class="w-5/12" v-if="getActiveItem.typeExo !== 'none'">
                         <p class="c-p">Bénéfice estimé</p>
-                        <p class="c-p u-green10 text-sm text-right">{{beneficeEstime}}</p>
+                        <p class="c-p u-green10 text-sm text-right">{{$nuxt.$numberWithSpaces(beneficeEstime)}}</p>
                     </div>
-                    <div class="w-5/12" v-if="benefice">
+                    <div class="w-5/12">
                         <p class="c-p">Bénéfice</p>
-                        <p class="c-p u-red10 text-sm text-right">{{benefice}}</p>
+                        <p class="c-p u-red10 text-sm text-right">{{$nuxt.$numberWithSpaces(benefice)}}</p>
                     </div>
                 </div>
             </div>
@@ -65,7 +65,7 @@
                     <input type="number" class="c-input text-right" :value="getActiveItem.coutTenta" @input="updateItem('coutTenta', $event, true)">
                     <img src="/img/kamas.png" srcset="/img/kamas.png 1x, /img/kamas@2x.png 2x" alt="" class="c-img">
                 </div>
-                <p class="p-cout-tenta-cent c-p text-xs" v-if="coutRunePassage"><span class="font-bold">{{coutRunePassage}}</span>k pour {{nbTentaMoyen}} tenta</p>
+                <p class="p-cout-tenta-cent c-p text-xs" v-if="coutRunePassage !== 0"><span class="font-bold">{{$nuxt.$numberWithSpaces(coutRunePassage)}}</span>k pour {{nbTentaMoyen}} tenta</p>
             </div>
             <div class="text-right">
                 <label class="c-p">Prix de vente</label>
@@ -108,26 +108,14 @@ export default {
         },
         beneficeEstime: function() {
             let coutTotalRunes = this.getActiveItem.coutTenta * this.nbTentaMoyen
-            let beneficeEstime = this.getActiveItem.prixDeVente - this.getActiveItem.coutAcquisition - coutTotalRunes
-            let beneficeEstimeFormated = this.$nuxt.$numberWithSpaces(beneficeEstime)
-            if(!isNaN(beneficeEstime)) {
-                return beneficeEstimeFormated
-            }
+            return this.getActiveItem.prixDeVente - this.getActiveItem.coutAcquisition - coutTotalRunes
         },
         benefice: function() {
             let coutTotalRunes = this.getActiveItem.coutTenta * this.getActiveItem.attempts
-            let benefice = this.getActiveItem.prixDeVente - this.getActiveItem.coutAcquisition - coutTotalRunes
-            let beneficeFormated = this.$nuxt.$numberWithSpaces(benefice)
-            if(!isNaN(benefice)) {
-                return beneficeFormated
-            }
+            return this.getActiveItem.prixDeVente - this.getActiveItem.coutAcquisition - coutTotalRunes
         },
         coutRunePassage: function() {
-            let coutRunePassage = this.getActiveItem.coutTenta * this.nbTentaMoyen
-            let coutRunePassageFormated = this.$nuxt.$numberWithSpaces(coutRunePassage)
-            if(!isNaN(coutRunePassage)) {
-                return coutRunePassageFormated
-            }
+            return this.getActiveItem.coutTenta * this.nbTentaMoyen
         }
     },
     methods: {
