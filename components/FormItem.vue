@@ -8,8 +8,20 @@
             <div class="c-badge">
                 <img :src="getActiveItem.img" />
             </div>
-            <div class="ml-9">
-                <h1 class="c-h1">{{getActiveItem.name}}</h1>
+            <div class="ml-9 flex flex-col justify-between flex-grow">
+                <div>
+                    <h1 class="c-h1">{{getActiveItem.name}}</h1>
+                </div>
+                <div class="flex justify-between p-benefice-container">
+                    <div class="w-5/12" v-if="getActiveItem.typeExo !== 'none'">
+                        <p class="c-p">Bénéfice estimé</p>
+                        <p class="c-p u-green10 text-sm text-right">{{beneficeEstime}}</p>
+                    </div>
+                    <div class="w-5/12">
+                        <p class="c-p">Bénéfice</p>
+                        <p class="c-p u-red10 text-sm text-right">{{benefice}}</p>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="grid grid-cols-3 gap-x-10 gap-y-5 mt-6 items-center">
@@ -62,6 +74,17 @@ export default {
     computed: {
         getActiveItem: function () {
             return this.$store.getters['items/getActiveItem']
+        },
+        nbTentaMoyen: function () {
+            return (this.getActiveItem.typeExo === "po") ? 51 : 100
+        },
+        beneficeEstime: function() {
+            let coutTotalRunes = this.getActiveItem.coutTenta * this.nbTentaMoyen
+            return this.$nuxt.$numberWithSpaces(this.getActiveItem.prixDeVente - this.getActiveItem.coutAcquisition - coutTotalRunes)
+        },
+        benefice: function() {
+            let coutTotalRunes = this.getActiveItem.coutTenta * this.getActiveItem.attempts
+            return this.$nuxt.$numberWithSpaces(this.getActiveItem.prixDeVente - this.getActiveItem.coutAcquisition - coutTotalRunes)
         }
     },
     methods: {
@@ -88,6 +111,9 @@ export default {
 </script>
 
 <style scoped lang="scss">
+.p-benefice-container {
+    max-width: 304px;
+}
 .p-button {
     width: 50%;
     height: 35px;

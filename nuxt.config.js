@@ -4,8 +4,9 @@ export default {
     css: ['~/assets/css/main.scss'],
     buildModules: ['@nuxtjs/tailwindcss', '@nuxtjs/style-resources'],
     modules: ['@nuxt/content'],
+    plugins: ['~/plugins/numberWithSpaces.js'],
     styleResources: {
-        scss: '~/assets/css/variables.scss'
+        scss: '~/assets/css/base/variables.scss'
     },
     head: {
         title: 'Dofus exo',
