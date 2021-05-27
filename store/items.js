@@ -19,6 +19,9 @@ export const mutations = {
         state.items.forEach(element => element.active = false)
         item = Object.assign(item, {
             "attempts": 0,
+            "coutTenta": 0,
+            "prixDeVente": 0,
+            "coutAcquisition": 0,
             "id": '_' + Math.random().toString(36).substr(2, 9),
             "active": true,
             "typeExo": "pa",

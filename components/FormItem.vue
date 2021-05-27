@@ -15,11 +15,11 @@
                 <div class="flex justify-between p-benefice-container">
                     <div class="w-5/12" v-if="getActiveItem.typeExo !== 'none'">
                         <p class="c-p">Bénéfice estimé</p>
-                        <p class="c-p u-green10 text-sm text-right">{{$nuxt.$numberWithSpaces(beneficeEstime)}}</p>
+                        <p :class="{'u-green10': Math.sign(beneficeEstime) === 1, 'u-red10': Math.sign(beneficeEstime) === -1}" class="c-p text-sm text-right">{{$nuxt.$numberWithSpaces(beneficeEstime)}}</p>
                     </div>
                     <div class="w-5/12">
                         <p class="c-p">Bénéfice</p>
-                        <p class="c-p u-red10 text-sm text-right">{{$nuxt.$numberWithSpaces(benefice)}}</p>
+                        <p :class="{'u-green10': Math.sign(benefice) === 1, 'u-red10': Math.sign(benefice) === -1}" class="c-p text-sm text-right">{{$nuxt.$numberWithSpaces(benefice)}}</p>
                     </div>
                 </div>
             </div>
