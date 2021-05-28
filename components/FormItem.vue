@@ -29,14 +29,18 @@
                 <label class="c-p">Type d’exo</label>
             </div>
             <div class="flex justify-between">
-                <input class="sr-only" type="radio" id="radio-pa" value="pa" v-model="getActiveItem.typeExo" @change="updateItem('typeExo', 'pa')">
-                <label for="radio-pa" class="c-input-label" :class="{ 'is-active': getActiveItem.typeExo === 'pa' }"><img src="/img/pa.png" alt=""></label>
-                <input class="sr-only" type="radio" id="radio-pm" value="pm" v-model="getActiveItem.typeExo" @change="updateItem('typeExo', 'pm')">
-                <label for="radio-pm" class="c-input-label"  :class="{ 'is-active': getActiveItem.typeExo === 'pm' }"><img src="/img/pm.png" alt=""></label>
-                <input class="sr-only" type="radio" id="radio-po" value="po" v-model="getActiveItem.typeExo" @change="updateItem('typeExo', 'po')">
-                <label for="radio-po" class="c-input-label" :class="{ 'is-active': getActiveItem.typeExo === 'po' }"><img src="/img/po.png" alt=""></label>
-                <input class="sr-only" type="radio" id="radio-none" value="none" v-model="getActiveItem.typeExo" @change="updateItem('typeExo', 'none')">
-                <label for="radio-none" class="c-input-label" :class="{ 'is-active': getActiveItem.typeExo === 'none' }"><span class="c-icon icon-highlight_off_black_24dp"></span></label>
+                <button @click="updateItem('typeExo', 'pa')" class="c-button-radio" :class="{ 'is-active': getActiveItem.typeExo === 'pa' }">
+                    <img src="/img/pa.png" alt="">
+                </button>
+                <button @click="updateItem('typeExo', 'pm')" class="c-button-radio" :class="{ 'is-active': getActiveItem.typeExo === 'pm' }">
+                    <img src="/img/pm.png" alt="">
+                </button>
+                <button @click="updateItem('typeExo', 'po')" class="c-button-radio" :class="{ 'is-active': getActiveItem.typeExo === 'po' }">
+                    <img src="/img/po.png" alt="">
+                </button>
+                <button @click="updateItem('typeExo', 'none')" class="c-button-radio" :class="{ 'is-active': getActiveItem.typeExo === 'none' }">
+                    <span class="c-icon icon-highlight_off_black_24dp"></span>
+                </button>
             </div>
             <div class="row-span-4">
                 <label class="c-p">Nb de tentatives :</label>
@@ -127,6 +131,7 @@ export default {
             })
         },
         updateItem: function(fieldName, value, isInt = false) {
+            console.log(value);
             if (isInt) {
                 if(value.target.value == '') {
                     value = 0

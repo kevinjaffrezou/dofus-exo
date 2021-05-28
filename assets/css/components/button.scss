@@ -1,0 +1,41 @@
+.c-button-radio {
+    position: relative;
+    display: block;
+    height: 35px;
+    width: 35px;
+    border: 1px solid $grey20;
+    border-radius: 2px;
+    cursor: pointer;
+
+    &:focus,
+    &.is-active {
+        outline: 0;
+        border: 1px solid $grey40;
+        img {
+            opacity: 1;
+        }
+        .c-icon {
+            opacity: 1;
+        }
+    }
+
+    .c-icon {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 24px;
+        opacity: .5;
+    }
+
+    img {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        max-width: none;
+        opacity: .5;
+        height: 35px;
+        width: 35px;
+    }
+}
