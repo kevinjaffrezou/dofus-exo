@@ -121,8 +121,8 @@ export default {
     methods: {
         incrementAttemps: function(i) {
             let vm = this;
-            this.$store.commit('items/UPDATE_ITEM', {
-                itemId: vm.getActiveItem.id,
+            this.$store.dispatch('items/updateItem', {
+                id: vm.getActiveItem.id,
                 data: {"attempts": vm.getActiveItem.attempts + i}
             })
         },
@@ -135,8 +135,8 @@ export default {
                 }
             }
             let vm = this;
-            this.$store.commit('items/UPDATE_ITEM', {
-                itemId: vm.getActiveItem.id,
+            this.$store.dispatch('items/updateItem', {
+                id: vm.getActiveItem.id,
                 data: {[fieldName]: value}
             })
         },

@@ -7,10 +7,10 @@ export const getters = {
         return state.items
     },
     getActiveItem: (state) => {
-        let ActiveItemIndex = state.items.map(function (item) {
-            return item.active;
-        }).indexOf(true);
-        return state.items[ActiveItemIndex]
+        return state.items.find(item => item.active === true)
+    },
+    getItemById: (state) => (id) => {
+        return state.items.find(item => item.id === id)
     }
 }
 
@@ -25,25 +25,17 @@ export const mutations = {
         });
         state.items = items
     },
-    DELETE_ITEM(state, itemId) {
-        // Search item index
-        let itemIndex = state.items.map(function (e) {
-            return e.id;
-        }).indexOf(itemId);
-        state.items.splice(itemIndex, 1)
+    DELETE_ITEM(state, id) {
+        let item = state.items.find(item => item.id === id)
+        state.items.splice(item, 1)
     },
     UPDATE_ITEM(state, {
-        itemId,
+        id,
         data
     }) {
-        // Search item index
-        let itemIndex = state.items.map(function (e) {
-            return e.id;
-        }).indexOf(itemId);
-        // Get item
-        let item = state.items[itemIndex]
-        // Update item data
-        item = Object.assign(item, data)
+        let item = state.items.find(item => item.id === id)
+        let itemIndex = state.items.indexOf(item);
+        item = Object.assign({}, item, data)
         this._vm.$set(state.items, itemIndex, item);
     },
     REMOVE_ACTIVE_ITEMS(state) {
@@ -63,7 +55,7 @@ export const actions = {
             })
             .then(function () {
                 commit('UPDATE_ITEM', {
-                    itemId: id,
+                    id: id,
                     data: {
                         "active": true
                     }
@@ -104,6 +96,27 @@ export const actions = {
         $nuxt.$DB.inventory.delete(id)
             .then(function () {
                 commit('DELETE_ITEM', id)
+            })
+            .catch(function (error) {
+                console.error("Dexie: " + error);
+            });
+    },
+    updateItem({
+        commit,
+        getters
+    }, {
+        id,
+        data
+    }) {
+        let item = getters.getItemById(id)
+        item = Object.assign({}, item, data)
+
+        $nuxt.$DB.inventory.put(item, id)
+            .then(function () {
+                commit('UPDATE_ITEM', {
+                    id,
+                    data
+                })
             })
             .catch(function (error) {
                 console.error("Dexie: " + error);
