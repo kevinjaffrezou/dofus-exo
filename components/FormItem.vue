@@ -141,7 +141,7 @@ export default {
             })
         },
         deleteItem: function(id) {
-            this.$store.commit('items/DELETE_ITEM', id)
+            this.$store.dispatch('items/deleteItem', id)
         }
     }
 }

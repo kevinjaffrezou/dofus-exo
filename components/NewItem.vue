@@ -93,7 +93,7 @@ export default {
         },
         addItem: function (item) {
             if(!this.selectedItem.dofusId) return
-            this.$store.commit('items/ADD_ITEM', item)
+            this.$store.dispatch('items/addItem', item)
             this.selectedItem = {img: '/img/default-item.png'} // Remove current search
             this.searchInput = '' // clear search input
             this.$store.commit('CLOSE_NEWITEM') // Close composant

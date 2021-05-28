@@ -24,7 +24,12 @@ export default {
     destroyed() {
       this.$store.commit('CLOSE_NEWITEM')
     },
-    async asyncData({ $content, params }) {
+    async fetch() {
+      const items = await this.$nuxt.$DB.inventory.toArray()
+      this.$store.commit('items/ADD_ITEMS', items)
+    },
+    fetchOnServer: false,
+    async asyncData({ $content }) {
       const equipements = await $content('/').fetch()
       return { equipements }
     }
