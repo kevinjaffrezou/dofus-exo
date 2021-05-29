@@ -3,7 +3,7 @@ export default {
     components: true,
     css: ['~/assets/css/main.scss'],
     buildModules: ['@nuxtjs/tailwindcss', '@nuxtjs/style-resources'],
-    modules: ['@nuxt/content'],
+    modules: ['@nuxt/content', 'portal-vue/nuxt'],
     plugins: ['~/plugins/numberWithSpaces.js', '~/plugins/dexie.js'],
     styleResources: {
         scss: '~/assets/css/base/variables.scss'

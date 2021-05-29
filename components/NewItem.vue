@@ -1,7 +1,7 @@
 <template>
     <div class="c-card p-6 mb-20">
         <div class="c-card__buttons">
-            <button @click="close" class="c-card__button"><span class="c-icon icon-visibility_off_black_24dp"></span></button>
+            <button @click="close" class="c-card__button"><span class="c-icon icon-close_black_24dp"></span></button>
         </div>
         <div class="flex flex-row items-center">
             <div class="c-badge">

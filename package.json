@@ -15,7 +15,8 @@
     "@nuxt/content": "^1.14.0",
     "dexie": "^3.0.3",
     "lodash": "^4.17.21",
-    "nuxt": "^2.15.4"
+    "nuxt": "^2.15.4",
+    "portal-vue": "^2.1.7"
   },
   "devDependencies": {
     "@nuxtjs/style-resources": "^1.0.0",

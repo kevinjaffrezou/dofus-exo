@@ -2,7 +2,15 @@
     <div class="c-card p-6" v-if="getActiveItem">
         <div class="c-card__buttons">
             <button class="c-card__button"><span class="c-icon icon-inventory_2_black_24dp"></span></button>
-            <button @click="deleteItem(getActiveItem.id)" class="c-card__button"><span class="c-icon icon-close_black_24dp"></span></button>
+            <button @click="showModalDelete = true" class="c-card__button"><span class="c-icon icon-delete_black_24dp"></span></button>
+
+            <portal to="modal-delete-item">
+                <modal v-if="showModalDelete">
+                    test
+                    <button v-on:click.stop="showModalDelete = false">test</button>
+                    <button @click="deleteItem(getActiveItem.id)"></button>
+                </modal>
+            </portal>
         </div>
         <div class="flex">
             <div class="c-badge">
@@ -103,6 +111,11 @@
 
 <script>
 export default {
+    data: function() {
+        return {
+            showModalDelete: false
+        }
+    },
     computed: {
         getActiveItem: function () {
             return this.$store.getters['items/getActiveItem']

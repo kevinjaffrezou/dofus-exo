@@ -16,6 +16,7 @@
     <div class="container-fluid mt-24">
       <Table/>
     </div>
+    <portal-target name="modal-delete-item"></portal-target>
   </div>
 </template>
 

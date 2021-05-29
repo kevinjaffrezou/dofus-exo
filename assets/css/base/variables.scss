@@ -15,6 +15,7 @@ $blue40: hsla(216, 88%, 60%, 1);
 $blue30: rgba(65, 136, 243, 0.3);
 $blue20: hsla(194, 51%, 92%, 1);
 $blue10: hsla(194, 51%, 92%, 0.5);
+$blue5: hsla(194, 51%, 92%, 0.3);
 
 $purple30: hsla(235, 24%, 42%, 1);
 $purple20: hsla(235, 24%, 42%, 0.8);
@@ -25,3 +26,4 @@ $red10: hsla(360, 72%, 39%, 1);
 
 // Shadow
 $shadow-default: 0px 2px 4px rgba(71, 71, 71, 0.25);
+$shadow-large: 0px 5px 13px rgba(0, 0, 0, 0.3);
