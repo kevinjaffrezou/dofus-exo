@@ -115,7 +115,7 @@
                         <button class="c-button-icon">
                             <span class="c-icon icon-replay_black_24dp"></span>
                         </button>
-                        <button class="c-button-icon ml-5">
+                        <button @click="$store.commit('OPEN_MODALDELETEITEM', item.id)" class="c-button-icon ml-5">
                             <span class="c-icon icon-delete_black_24dp"></span>
                         </button>
                     </td>

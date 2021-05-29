@@ -1,25 +1,16 @@
-<template>
-    <div>
-        <div class="modal">
-            <slot></slot>
-        </div>
-        <div class="modal-backdrop"></div>
-    </div>
-</template>
-
-<style lang="scss">
-.modal {
+.c-modal {
+    position: relative;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     position: fixed;
-    width: 310px;
+    width: 340px;
     background-color: white;
     box-shadow: $shadow-large;
     z-index: 1001;
 }
 
-.modal-backdrop {
+.c-modal-backdrop {
     position: fixed;
     top: 0;
     right: 0;
@@ -28,4 +19,3 @@
     background-color: $blue5;
     z-index: 1000;
 }
-</style>

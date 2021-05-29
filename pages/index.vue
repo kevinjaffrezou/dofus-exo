@@ -16,7 +16,7 @@
     <div class="container-fluid mt-24">
       <Table/>
     </div>
-    <portal-target name="modal-delete-item"></portal-target>
+    <ModalDeleteItem v-if="getModalDeleteItem.show"></ModalDeleteItem>
   </div>
 </template>
 
@@ -25,6 +25,9 @@ export default {
     computed: {
         getSettings: function () {
             return this.$store.getters['getSettings']
+        },
+        getModalDeleteItem: function () {
+            return this.$store.getters['getModalDeleteItem']
         }
     },
     destroyed() {

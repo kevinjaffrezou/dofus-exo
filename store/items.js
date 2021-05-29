@@ -27,7 +27,9 @@ export const mutations = {
     },
     DELETE_ITEM(state, id) {
         let item = state.items.find(item => item.id === id)
-        state.items.splice(item, 1)
+        let itemIndex = state.items.indexOf(item);
+        // Vérifie que l'item existe
+        if (itemIndex !== -1) state.items.splice(itemIndex, 1)
     },
     UPDATE_ITEM(state, {
         id,

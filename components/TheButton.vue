@@ -66,20 +66,25 @@ export default {
     }
 
     &.--primary {
-        background: #4188F3;
+        background: $blue40;
         color: #fff;
 
         &.--stroked {
-            border: solid 2px #4188F3;
+            border: solid 2px $blue40;
             background: transparent;
-            color: #4188F3;
+            color: $blue40;
 
             &:hover,
             &:focus {
-                background: #4188F3;
+                background: $blue40;
                 color: #fff;
             }
         }
+    }
+
+    &.--red {
+        background: $red20;
+        color: #fff;
     }
 }
 </style>
