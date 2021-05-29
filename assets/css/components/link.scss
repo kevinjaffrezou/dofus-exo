@@ -2,4 +2,8 @@
     &.nuxt-link-exact-active {
         text-decoration: underline;
     }
+
+    &.--blue {
+        color: $blue40;
+    }
 }

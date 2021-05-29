@@ -1,15 +1,20 @@
 <template>
-  <div class="container-fluid mt-20">
-    <div class="grid grid-cols-12 gap-x-5">
-      <div>
-        <Inventory></Inventory>
-      </div>
-      <div class="col-span-10">
-        <div class="container-730">
-          <NewItem :dofusEquiments="equipements" v-if="getSettings.openNewItem"></NewItem>
-          <FormItem></FormItem>
+  <div>
+    <div class="container-fluid mt-20">
+      <div class="grid grid-cols-12 gap-x-5">
+        <div>
+          <Inventory></Inventory>
+        </div>
+        <div class="col-span-10">
+          <div class="container-730">
+            <NewItem :dofusEquiments="equipements" v-if="getSettings.openNewItem"></NewItem>
+            <FormItem></FormItem>
+          </div>
         </div>
       </div>
+    </div>
+    <div class="container-fluid mt-24">
+      <Table/>
     </div>
   </div>
 </template>

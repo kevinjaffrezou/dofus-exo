@@ -95,7 +95,7 @@
                 </div>
             </div>
             <div class="flex justify-center">
-                <TheButton class="--primary mt-8">Sauvegarder</TheButton>
+                <TheButton @click.native="saveItem()" class="--primary mt-8">Sauvegarder</TheButton>
             </div>
         </div>
     </div>
@@ -131,7 +131,6 @@ export default {
             })
         },
         updateItem: function(fieldName, value, isInt = false) {
-            console.log(value);
             if (isInt) {
                 if(value.target.value == '') {
                     value = 0
@@ -143,6 +142,13 @@ export default {
             this.$store.dispatch('items/updateItem', {
                 id: vm.getActiveItem.id,
                 data: {[fieldName]: value}
+            })
+        },
+        saveItem: function() {
+            let vm = this;
+            this.$store.dispatch('items/updateItem', {
+                id: vm.getActiveItem.id,
+                data: {'isSave': true, 'active': false}
             })
         },
         deleteItem: function(id) {

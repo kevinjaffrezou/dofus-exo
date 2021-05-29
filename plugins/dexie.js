@@ -3,7 +3,7 @@ import Dexie from 'dexie'
 export default (context, inject) => {
     const db = new Dexie('Dofus-exo');
     db.version(1).stores({
-        inventory: 'id,dofusId,name,type,attempts,coutTenta,prixDeVente,coutAcquisition,active,typeExo,exoPasse,img'
+        inventory: 'id,dofusId,name,type,attempts,coutTenta,prixDeVente,coutAcquisition,active,typeExo,exoPasse,img,url,isSave'
     });
     // Inject $hello(msg) in Vue, context and store.
     inject('DB', db)

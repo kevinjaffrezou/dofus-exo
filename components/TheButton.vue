@@ -21,11 +21,24 @@ export default {
     padding: 0 24px;
     background: $grey20;
     color: #fff;
-    transition: color $transition, background-color $transition;
+    transition: color $transition, background-color $transition, opacity $transition;
 
     &:hover,
     &:focus {
         outline: 0;
+    }
+
+    &.--small {
+        height: 35px;
+        font-weight: normal;
+    }
+
+    &.--grey30 {
+        background: $grey30;
+
+        &:disabled {
+            opacity: .5;
+        }
     }
 
     &.--stroked {
