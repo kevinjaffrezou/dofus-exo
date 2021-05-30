@@ -16,7 +16,7 @@
                     <div class="w-5/12" v-if="getActiveItem.typeExo !== 'none'">
                         <p class="c-p">
                             Bénéfice estimé 
-                            <span v-tooltip="'Bénéfice si la tentative d’exo se fait à la 100ième tentatives Permet de calculer la rentabilité spéculative de l’exo'"><sup  class="c-icon icon-help_outline_black_24dp"></sup></span>
+                            <span class="c-tooltip" data-before="Bénéfice si la tentative d’exo se fait à la 100ième tentatives Permet de calculer la rentabilité spéculative de l’exo"><sup  class="c-icon icon-help_outline_black_24dp"></sup></span>
                         </p>
                         <p :class="{'u-green10': Math.sign(beneficeEstime) === 1, 'u-red10': Math.sign(beneficeEstime) === -1}" class="c-p text-sm text-right">{{$nuxt.$numberWithSpaces(beneficeEstime)}}</p>
                     </div>
@@ -47,16 +47,15 @@
             </div>
             <div class="row-span-4">
                 <label class="c-p">Nb de tentatives :</label>
-                <input type="number" :class="{'u-blue40': getActiveItem.exoPasse}" class="c-input --no-border-radius-bottom --lg mt-1" :value="getActiveItem.attempts" @input="updateItem('attempts', $event, true)">
-                <div class="flex" :class="{'invisible': getActiveItem.exoPasse}">
+                <input type="number" class="c-input --no-border-radius-bottom --lg mt-1" :value="getActiveItem.attempts" @input="updateItem('attempts', $event, true)">
+                <div class="flex">
                     <button class="p-button" @click="incrementAttemps(1)">+1</button>
                     <button class="p-button" @click="incrementAttemps(10)">+10</button>
                 </div>
-                <TheButton v-if="!getActiveItem.exoPasse" @click.native="updateItem('exoPasse', true)" class="--primary mt-5 w-full">Passé !</TheButton>
-                <TheButton v-if="getActiveItem.exoPasse" @click.native="updateItem('exoPasse', false)" class="--stroked mt-5 w-full">Annuler</TheButton>
+                <TheButton @click.native="saveItem()" class="--primary mt-5 w-full">Passé !</TheButton>
             </div>
             <div class="text-right">
-                <label class="c-p">Coût d'acquisition <span v-tooltip="'Prix d’achat de l’item ou coût total des ressources'"><sup  class="c-icon icon-help_outline_black_24dp"></sup></span></label>
+                <label class="c-p relative">Coût d'acquisition <span class="c-tooltip --absolute" data-before="Prix d’achat de l’item ou coût total des ressources"><sup  class="c-icon icon-help_outline_black_24dp"></sup></span></label>
             </div>
             <div>
                 <div class="c-addon-container --right">
@@ -65,7 +64,7 @@
                 </div>
             </div>
             <div class="text-right">
-                <label class="c-p">Coût des runes pour 1 tenta</label>
+                <label class="c-p relative">Coût des runes pour 1 tenta <span class="c-tooltip --absolute" data-before="Conseil : Préparez une dizaine de tentatives, notez la valeur estimée des runes, effectuez vos tenta, puis soustrayez l’ancienne valeur avec la nouvelle. Divisez avec le nombre de tenta que vous avez fait pour avoir une bonne moyenne"><sup  class="c-icon icon-help_outline_black_24dp"></sup></span></label>
             </div>
             <div class="relative">
                 <div class="c-addon-container --right">
@@ -84,21 +83,16 @@
                 </div>
             </div>
         </div>
-        <div v-if="getActiveItem.exoPasse">
-            <hr class="mt-10 mb-8">
-            <div class="grid grid-cols-3 gap-x-10">
-                <div class="text-right">
-                    <label class="c-p">Screenshot URL du jet</label>
-                </div>
-                <div class="col-span-2">
-                    <div class="c-addon-container">
-                        <span class="c-icon icon-public_black_24dp" style="margin-top: -2px;"></span>
-                        <input type="text" class="c-input" @input="updateItem('url', $event.target.value)">
-                    </div>
-                </div>
+        <hr class="mt-10 mb-8">
+        <div class="grid grid-cols-3 gap-x-10 items-center">
+            <div class="text-right">
+                <label class="c-p relative">URL : Screenshot du jet <span class="c-tooltip --absolute" data-before="Hébergez cette image sur imgur ou gyazo par exemple"><sup  class="c-icon icon-help_outline_black_24dp"></sup></span></label>
             </div>
-            <div class="flex justify-center">
-                <TheButton @click.native="saveItem()" class="--primary mt-8">Sauvegarder</TheButton>
+            <div class="col-span-2">
+                <div class="c-addon-container">
+                    <span class="c-icon icon-public_black_24dp" style="margin-top: -2px;"></span>
+                    <input type="text" class="c-input" @input="updateItem('url', $event.target.value)">
+                </div>
             </div>
         </div>
     </div>

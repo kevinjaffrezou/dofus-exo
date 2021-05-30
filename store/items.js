@@ -81,7 +81,6 @@ export const actions = {
             "id": '_' + Math.random().toString(36).substr(2, 9),
             "active": true,
             "typeExo": "pa",
-            "exoPasse": false,
             "isSave": false
         })
 

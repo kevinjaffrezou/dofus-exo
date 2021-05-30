@@ -1,5 +1,6 @@
 .c-tooltip {
     position: relative;
+    cursor: help;
 
     .c-icon {
         color: $grey20;
@@ -12,6 +13,13 @@
         }
     }
 
+    &.--absolute {
+        position: absolute;
+        right: -3px;
+        top: 0;
+        transform: translateX(100%);
+    }
+
     &::before {
         opacity: 0;
         transition: opacity $transition;
@@ -21,7 +29,7 @@
         left: 50%;
         bottom: 35px;
         background-color: white;
-        width: 150px;
+        width: 200px;
         padding: 8px;
         font-size: 14px;
         box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), inset 0px 4px 0px #4188F3;
