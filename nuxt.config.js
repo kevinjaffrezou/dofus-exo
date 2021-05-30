@@ -4,7 +4,7 @@ export default {
     css: ['~/assets/css/main.scss'],
     buildModules: ['@nuxtjs/tailwindcss', '@nuxtjs/style-resources'],
     modules: ['@nuxt/content'],
-    plugins: ['~/plugins/numberWithSpaces.js', '~/plugins/dexie.js'],
+    plugins: ['~/plugins/numberWithSpaces.js', '~/plugins/dexie.js', '~/plugins/tooltip.js'],
     styleResources: {
         scss: '~/assets/css/base/variables.scss'
     },

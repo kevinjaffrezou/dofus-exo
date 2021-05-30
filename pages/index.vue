@@ -17,6 +17,7 @@
       <Table/>
     </div>
     <ModalDeleteItem v-if="getModalDeleteItem.show"></ModalDeleteItem>
+    <ModalArchiveItem v-if="getModalArchiveItem.show"></ModalArchiveItem>
   </div>
 </template>
 
@@ -28,6 +29,9 @@ export default {
         },
         getModalDeleteItem: function () {
             return this.$store.getters['getModalDeleteItem']
+        },
+        getModalArchiveItem: function () {
+            return this.$store.getters['getModalArchiveItem']
         }
     },
     destroyed() {

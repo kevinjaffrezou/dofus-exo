@@ -1,7 +1,7 @@
 <template>
     <div class="c-card p-6" v-if="getActiveItem">
         <div class="c-card__buttons">
-            <button class="c-card__button"><span class="c-icon icon-inventory_2_black_24dp"></span></button>
+            <button @click="$store.commit('OPEN_MODALARCHIVEITEM', getActiveItem.id)" class="c-card__button"><span class="c-icon icon-inventory_2_black_24dp"></span></button>
             <button @click="$store.commit('OPEN_MODALDELETEITEM', getActiveItem.id)" class="c-card__button"><span class="c-icon icon-delete_black_24dp"></span></button>
         </div>
         <div class="flex">
@@ -14,7 +14,10 @@
                 </div>
                 <div class="flex justify-between p-benefice-container">
                     <div class="w-5/12" v-if="getActiveItem.typeExo !== 'none'">
-                        <p class="c-p">Bénéfice estimé</p>
+                        <p class="c-p">
+                            Bénéfice estimé 
+                            <span v-tooltip="'Bénéfice si la tentative d’exo se fait à la 100ième tentatives Permet de calculer la rentabilité spéculative de l’exo'"><sup  class="c-icon icon-help_outline_black_24dp"></sup></span>
+                        </p>
                         <p :class="{'u-green10': Math.sign(beneficeEstime) === 1, 'u-red10': Math.sign(beneficeEstime) === -1}" class="c-p text-sm text-right">{{$nuxt.$numberWithSpaces(beneficeEstime)}}</p>
                     </div>
                     <div class="w-5/12">
@@ -53,7 +56,7 @@
                 <TheButton v-if="getActiveItem.exoPasse" @click.native="updateItem('exoPasse', false)" class="--stroked mt-5 w-full">Annuler</TheButton>
             </div>
             <div class="text-right">
-                <label class="c-p">Coût d'acquisition</label>
+                <label class="c-p">Coût d'acquisition <span v-tooltip="'Prix d’achat de l’item ou coût total des ressources'"><sup  class="c-icon icon-help_outline_black_24dp"></sup></span></label>
             </div>
             <div>
                 <div class="c-addon-container --right">

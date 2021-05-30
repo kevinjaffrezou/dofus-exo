@@ -5,6 +5,10 @@ export const state = () => ({
     modalDeleteItem: {
         show: false,
         itemId: ''
+    },
+    modalArchiveItem: {
+        show: false,
+        itemId: ''
     }
 })
 
@@ -14,6 +18,9 @@ export const getters = {
     },
     getModalDeleteItem: (state) => {
         return state.modalDeleteItem
+    },
+    getModalArchiveItem: (state) => {
+        return state.modalArchiveItem
     }
 }
 
@@ -31,5 +38,13 @@ export const mutations = {
     CLOSE_MODALDELETEITEM(state) {
         state.modalDeleteItem.show = false
         state.modalDeleteItem.itemId = ''
+    },
+    OPEN_MODALARCHIVEITEM(state, itemId) {
+        state.modalArchiveItem.show = true
+        state.modalArchiveItem.itemId = itemId
+    },
+    CLOSE_MODALARCHIVEITEM(state) {
+        state.modalArchiveItem.show = false
+        state.modalArchiveItem.itemId = ""
     }
 }

@@ -1,0 +1,49 @@
+.c-tooltip {
+    position: relative;
+
+    .c-icon {
+        color: $grey20;
+    }
+
+    &:hover {
+        &:before,
+        &:after {
+            opacity: 1;
+        }
+    }
+
+    &::before {
+        opacity: 0;
+        transition: opacity $transition;
+        pointer-events: none;
+        content: attr(data-before); /* value that that refers to CSS 'content' */
+        position:absolute;
+        left: 50%;
+        bottom: 35px;
+        background-color: white;
+        width: 150px;
+        padding: 8px;
+        font-size: 14px;
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), inset 0px 4px 0px #4188F3;
+        transform: translateX(-50%);
+        z-index: 500;
+        text-align: left;
+    }
+
+    &::after {
+        opacity: 0;
+        transition: opacity $transition;
+        z-index: 501;
+        content: '';
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 27px;
+        margin: auto;
+        background-color: white;
+        box-shadow: -3px 3px 4px rgba(0, 0, 0, 0.25);
+        transform: rotate(-45deg);
+        height: 15px;
+        width: 15px;
+    }
+}

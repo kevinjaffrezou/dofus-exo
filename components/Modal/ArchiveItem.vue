@@ -6,11 +6,14 @@
             </div>
 
             <p class="c-h2 text-center">
-                Êtes vous sûr de vouloir supprimer définitivement cet item ?
+                Archiver
+            </p>
+            <p class="text-center mt-2">
+                L'item s'affichera dans le tableau et la tentative d'exo pourra être repris en cliquant sur l'icone "rafraichir"
             </p>
             <div class="flex justify-between mt-8">
                 <TheButton @click.native="hideModal()" class="--stroked">Annuler</TheButton>
-                <TheButton @click.native="deleteItem()" class="--red">Supprimer</TheButton>
+                <TheButton @click.native="archiveItem()" class="--primary">Archiver</TheButton>
             </div>
         </div>
         <div class="c-modal-backdrop" @click="hideModal()"></div>
@@ -20,17 +23,21 @@
 <script>
 export default {
     computed: {
-        getModalDeleteItem: function () {
-            return this.$store.getters['getModalDeleteItem']
+        getModalArchiveItem: function () {
+            return this.$store.getters['getModalArchiveItem']
         }
     },
     methods: {
-        deleteItem: function() {
-            this.$store.dispatch('items/deleteItem', this.getModalDeleteItem.itemId)
+        archiveItem: function() {
+            let vm = this;
+            this.$store.dispatch('items/updateItem', {
+                id: vm.getModalArchiveItem.itemId,
+                data: {'isSave': true, 'active': false}
+            })
             this.hideModal()
         },
         hideModal: function() {
-            this.$store.commit('CLOSE_MODALDELETEITEM')
+            this.$store.commit('CLOSE_MODALARCHIVEITEM')
         }
     }
 }
