@@ -78,14 +78,16 @@ export const actions = {
             "coutTenta": 0,
             "prixDeVente": 0,
             "coutAcquisition": 0,
-            "id": '_' + Math.random().toString(36).substr(2, 9),
             "active": true,
             "typeExo": "pa",
             "isSave": false
         })
 
         $nuxt.$DB.inventory.put(item)
-            .then(function () {
+            .then(function (result) {
+                item = Object.assign(item, {
+                    'id': result
+                })
                 commit('ADD_ITEM', item)
             })
             .catch(function (error) {

@@ -24,38 +24,40 @@
 
         </div>
 
+        {{sort}}
+
         <table class="mt-5">
             <thead>
                 <tr>
                     <td>
-                        <p>N°</p>
+                        <button @click="sortBy('id')">N° <span class="c-icon icon-arrow_drop_down_black_24dp"></span></button>
                     </td>
                     <td>
                         <p>Image</p>
                     </td>
                     <td>
-                        <p>Nom de l’item</p>
+                        <button @click="sortBy('name')">Nom de l’item <span class="c-icon icon-arrow_drop_down_black_24dp"></span></button>
                     </td>
                     <td>
-                        <p>Type</p>
+                        <button @click="sortBy('type')">Type <span class="c-icon icon-arrow_drop_down_black_24dp"></span></button>
                     </td>
                     <td>
-                        <p>Nb de tenta</p>
+                        <button @click="sortBy('attempts')">Nb de tenta <span class="c-icon icon-arrow_drop_down_black_24dp"></span></button>
                     </td>
                     <td>
-                        <p>Bénéfice</p>
+                        <button @click="sortBy('benefice')">Bénéfice <span class="c-icon icon-arrow_drop_down_black_24dp"></span></button>
                     </td>
                     <td>
-                        <p>Bénéfice estimé</p>
+                        <button @click="sortBy('benefice-estime')">Bénéfice estimé <span class="c-icon icon-arrow_drop_down_black_24dp"></span></button>
                     </td>
                     <td>
-                        <p>Coût d’acquisition</p>
+                        <button @click="sortBy('cout-acquisition')">Coût d’acquisition <span class="c-icon icon-arrow_drop_down_black_24dp"></span></button>
                     </td>
                     <td>
-                        <p>Coût total des runes‬</p>
+                        <button @click="sortBy('cout-rune')">Coût total des runes <span class="c-icon icon-arrow_drop_down_black_24dp"></span></button>
                     </td>
                     <td>
-                        <p>Prix de vente</p>
+                        <button @click="sortBy('prix')">Prix de vente <span class="c-icon icon-arrow_drop_down_black_24dp"></span></button>
                     </td>
                     <td>
                         <p>Jet</p>
@@ -66,9 +68,9 @@
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="(item, index) in itemsFiltered" :key="item.id">
+                <tr v-for="(item) in itemsSorted" :key="item.id">
                     <td>
-                        <p>{{index}}</p>
+                        <p>{{item.id}}</p>
                     </td>
                     <td>
                         <img class="w-8" :src="item.img" alt="">
@@ -109,10 +111,10 @@
                         <p class="text-sm">{{$nuxt.$numberWithSpaces(item.prixDeVente)}}</p>
                     </td>
                     <td>
-                        <a href="#" class="c-link --blue">Lien</a>
+                        <a target="_blank" :href="item.url" class="c-link --blue" v-if="item.url">Lien</a>
                     </td>
                     <td>
-                        <button class="c-button-icon">
+                        <button @click="unsavedItem(item.id)" class="c-button-icon">
                             <span class="c-icon icon-replay_black_24dp"></span>
                         </button>
                         <button @click="$store.commit('OPEN_MODALDELETEITEM', item.id)" class="c-button-icon ml-5">
@@ -130,7 +132,8 @@ export default {
     data: function() {
         return {
             search: "",
-            filterType: "all"
+            filterType: "all",
+            sort: 'id-reverse'
         }
     },
     computed: {
@@ -157,6 +160,36 @@ export default {
 
                 return pass
             });
+        },
+        itemsSorted: function() {
+            let vm = this
+            return this.itemsFiltered.sort(function (a, b) {
+
+                if(vm.sort == "id") return a.id - b.id;
+                if(vm.sort == "type") return (a.typeExo > b.typeExo) ? 1 : ((b.typeExo > a.typeExo) ? -1 : 0)
+                if(vm.sort == "type-reverse") return (a.typeExo < b.typeExo) ? 1 : ((b.typeExo < a.typeExo) ? -1 : 0)
+                if(vm.sort == "attempts") return a.attempts - b.attempts;
+                if(vm.sort == "attempts-reverse") return b.attempts - a.attempts;
+                if(vm.sort == "benefice") {
+                    let beneficeA = vm.benefice(a.prixDeVente,a.coutAcquisition,a.coutTenta,a.attempts)
+                    let beneficeB = vm.benefice(b.prixDeVente,b.coutAcquisition,b.coutTenta,b.attempts)
+                    return beneficeA - beneficeB;
+                }
+                if(vm.sort == "benefice-reverse") {
+                    let beneficeA = parseInt(vm.benefice(a.prixDeVente,a.coutAcquisition,a.coutTenta,a.attempts))
+                    let beneficeB = parseInt(vm.benefice(b.prixDeVente,b.coutAcquisition,b.coutTenta,b.attempts))
+                    return beneficeB - beneficeA;
+                }
+                if(vm.sort == "name") return (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0)
+                if(vm.sort == "name-reverse") return (a.name < b.name) ? 1 : ((b.name < a.name) ? -1 : 0)
+                if(vm.sort == "cout-acquisition") return a.coutAcquisition - b.coutAcquisition;
+                if(vm.sort == "cout-acquisition-reverse") return b.coutAcquisition - a.coutAcquisition;
+                if(vm.sort == "prix") return a.prixDeVente - b.prixDeVente;
+                if(vm.sort == "prix-reverse") return b.prixDeVente - a.prixDeVente;
+                
+                
+                return b.id - a.id;
+            });
         }
     },
     methods: {
@@ -176,6 +209,20 @@ export default {
         reset: function() {
             this.search = ""
             this.filterType = "all"
+        },
+        unsavedItem: function(id) {
+            this.$store.dispatch('items/updateActiveItem', id)
+            this.$store.dispatch('items/updateItem', {
+                id: id,
+                data: {'isSave': false}
+            })
+        },
+        sortBy: function(type) {
+            if(type === this.sort) {
+                this.sort = type + '-reverse'
+            } else {
+                this.sort = type
+            }
         }
     }
 }
@@ -203,9 +250,25 @@ table {
 thead {
     background: $blue20;
 
+    button,
     p {
         color: $purple30;
         font-weight: 600;
+    }
+
+    button {
+        position: relative;
+        .c-icon {
+            position: absolute;
+            top: 50%;
+            right: 0;
+            transform: translate(100%, -50%);
+            font-size: 24px;
+        }
+
+        &:focus {
+            outline: 0;
+        }
     }
 }
 

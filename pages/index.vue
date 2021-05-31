@@ -38,7 +38,8 @@ export default {
       this.$store.commit('CLOSE_NEWITEM')
     },
     async fetch() {
-      const items = await this.$nuxt.$DB.inventory.toArray()
+      const items = await this.$nuxt.$DB.inventory.toArray();
+      items.reverse()
       this.$store.commit('items/ADD_ITEMS', items)
     },
     fetchOnServer: false,
