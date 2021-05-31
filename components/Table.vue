@@ -20,44 +20,42 @@
                     <span class="c-icon icon-highlight_off_black_24dp"></span>
                 </button>
             </div>
-            <TheButton @click.native="reset()" :disabled="search === '' && filterType === 'all'" class="ml-12 --grey30 --small">Reset</TheButton>
+            <TheButton @click.native="reset()" :disabled="search === '' && filterType === 'all' && sort === 'id'" class="ml-12 --grey30 --small">Reset</TheButton>
 
         </div>
-
-        {{sort}}
 
         <table class="mt-5">
             <thead>
                 <tr>
                     <td>
-                        <button @click="sortBy('id')">N° <span class="c-icon icon-arrow_drop_down_black_24dp"></span></button>
+                        <button class="button-sort" :class="{ active: sort === 'id', 'active-reverse': sort === 'id-reverse' }" @click="sortBy('id')">N° <span class="c-icon icon-arrow_drop_down_black_24dp"></span></button>
                     </td>
                     <td>
                         <p>Image</p>
                     </td>
                     <td>
-                        <button @click="sortBy('name')">Nom de l’item <span class="c-icon icon-arrow_drop_down_black_24dp"></span></button>
+                        <button class="button-sort" :class="{ active: sort === 'name', 'active-reverse': sort === 'name-reverse' }" @click="sortBy('name')">Nom de l’item <span class="c-icon icon-arrow_drop_down_black_24dp"></span></button>
                     </td>
                     <td>
-                        <button @click="sortBy('type')">Type <span class="c-icon icon-arrow_drop_down_black_24dp"></span></button>
+                        <button class="button-sort" :class="{ active: sort === 'type', 'active-reverse': sort === 'type-reverse' }" @click="sortBy('type')">Type <span class="c-icon icon-arrow_drop_down_black_24dp"></span></button>
                     </td>
                     <td>
-                        <button @click="sortBy('attempts')">Nb de tenta <span class="c-icon icon-arrow_drop_down_black_24dp"></span></button>
+                        <button class="button-sort" :class="{ active: sort === 'attempts', 'active-reverse': sort === 'attempts-reverse' }" @click="sortBy('attempts')">Nb de tenta <span class="c-icon icon-arrow_drop_down_black_24dp"></span></button>
                     </td>
                     <td>
-                        <button @click="sortBy('benefice')">Bénéfice <span class="c-icon icon-arrow_drop_down_black_24dp"></span></button>
+                        <button class="button-sort" :class="{ active: sort === 'benefice', 'active-reverse': sort === 'benefice-reverse' }" @click="sortBy('benefice')">Bénéfice <span class="c-icon icon-arrow_drop_down_black_24dp"></span></button>
                     </td>
                     <td>
-                        <button @click="sortBy('benefice-estime')">Bénéfice estimé <span class="c-icon icon-arrow_drop_down_black_24dp"></span></button>
+                        <button class="button-sort" :class="{ active: sort === 'benefice-estime', 'active-reverse': sort === 'benefice-estime-reverse' }" @click="sortBy('benefice-estime')">Bénéfice estimé <span class="c-icon icon-arrow_drop_down_black_24dp"></span></button>
                     </td>
                     <td>
-                        <button @click="sortBy('cout-acquisition')">Coût d’acquisition <span class="c-icon icon-arrow_drop_down_black_24dp"></span></button>
+                        <button class="button-sort" :class="{ active: sort === 'cout-acquisition', 'active-reverse': sort === 'cout-acquisition-reverse' }" @click="sortBy('cout-acquisition')">Coût d’acquisition <span class="c-icon icon-arrow_drop_down_black_24dp"></span></button>
                     </td>
                     <td>
-                        <button @click="sortBy('cout-rune')">Coût total des runes <span class="c-icon icon-arrow_drop_down_black_24dp"></span></button>
+                        <button class="button-sort" :class="{ active: sort === 'cout-rune', 'active-reverse': sort === 'cout-rune-reverse' }" @click="sortBy('cout-rune')">Coût total des runes <span class="c-icon icon-arrow_drop_down_black_24dp"></span></button>
                     </td>
                     <td>
-                        <button @click="sortBy('prix')">Prix de vente <span class="c-icon icon-arrow_drop_down_black_24dp"></span></button>
+                        <button class="button-sort" :class="{ active: sort === 'prix', 'active-reverse': sort === 'prix-reverse' }" @click="sortBy('prix')">Prix de vente <span class="c-icon icon-arrow_drop_down_black_24dp"></span></button>
                     </td>
                     <td>
                         <p>Jet</p>
@@ -87,25 +85,23 @@
                     </td>
                     <td class="text-right">
                         <p class="text-sm" :class="{
-                            'u-green10': Math.sign(benefice(item.prixDeVente,item.coutAcquisition,item.coutTenta,item.attempts)) === 1, 
-                            'u-red10': Math.sign(benefice(item.prixDeVente,item.coutAcquisition,item.coutTenta,item.attempts)) === -1}">
-
-                            {{$nuxt.$numberWithSpaces(benefice(item.prixDeVente,item.coutAcquisition,item.coutTenta,item.attempts))}}
+                            'u-green10': Math.sign(benefice(item)) === 1, 
+                            'u-red10': Math.sign(benefice(item)) === -1}">
+                            {{$nuxt.$numberWithSpaces(benefice(item))}}
                         </p>
                     </td>
                     <td class="text-right">
                         <p class="text-sm" :class="{
-                            'u-green10': Math.sign(beneficeEstime(item.typeExo,item.prixDeVente,item.coutAcquisition,item.coutTenta)) === 1, 
-                            'u-red10': Math.sign(beneficeEstime(item.typeExo,item.prixDeVente,item.coutAcquisition,item.coutTenta)) === -1}">
-
-                            {{$nuxt.$numberWithSpaces(beneficeEstime(item.typeExo,item.prixDeVente,item.coutAcquisition,item.coutTenta))}}
+                            'u-green10': Math.sign(beneficeEstime(item)) === 1, 
+                            'u-red10': Math.sign(beneficeEstime(item)) === -1}">
+                            {{$nuxt.$numberWithSpaces(beneficeEstime(item))}}
                         </p>
                     </td>
                     <td class="text-right">
                         <p class="text-sm">{{$nuxt.$numberWithSpaces(item.coutAcquisition)}}</p>
                     </td>
                     <td class="text-right">
-                        <p class="text-sm">(<span class="font-bold">{{$nuxt.$numberWithSpaces(item.coutTenta)}}</span>/tenta) {{$nuxt.$numberWithSpaces(coutTotalRunes(item.coutTenta, item.attempts))}}</p>
+                        <p class="text-sm">(<span class="font-bold">{{$nuxt.$numberWithSpaces(item.coutTenta)}}</span>/tenta) {{$nuxt.$numberWithSpaces(coutTotalRunes(item))}}</p>
                     </td>
                     <td class="text-right">
                         <p class="text-sm">{{$nuxt.$numberWithSpaces(item.prixDeVente)}}</p>
@@ -133,7 +129,7 @@ export default {
         return {
             search: "",
             filterType: "all",
-            sort: 'id-reverse'
+            sort: 'id'
         }
     },
     computed: {
@@ -163,27 +159,23 @@ export default {
         },
         itemsSorted: function() {
             let vm = this
-            return this.itemsFiltered.sort(function (a, b) {
+            return this.itemsFiltered.sort(function (b, a) {
 
                 if(vm.sort == "id") return a.id - b.id;
+                if(vm.sort == "name") return (a.name < b.name) ? 1 : ((b.name < a.name) ? -1 : 0)
+                if(vm.sort == "name-reverse") return (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0)
                 if(vm.sort == "type") return (a.typeExo > b.typeExo) ? 1 : ((b.typeExo > a.typeExo) ? -1 : 0)
                 if(vm.sort == "type-reverse") return (a.typeExo < b.typeExo) ? 1 : ((b.typeExo < a.typeExo) ? -1 : 0)
                 if(vm.sort == "attempts") return a.attempts - b.attempts;
                 if(vm.sort == "attempts-reverse") return b.attempts - a.attempts;
-                if(vm.sort == "benefice") {
-                    let beneficeA = vm.benefice(a.prixDeVente,a.coutAcquisition,a.coutTenta,a.attempts)
-                    let beneficeB = vm.benefice(b.prixDeVente,b.coutAcquisition,b.coutTenta,b.attempts)
-                    return beneficeA - beneficeB;
-                }
-                if(vm.sort == "benefice-reverse") {
-                    let beneficeA = parseInt(vm.benefice(a.prixDeVente,a.coutAcquisition,a.coutTenta,a.attempts))
-                    let beneficeB = parseInt(vm.benefice(b.prixDeVente,b.coutAcquisition,b.coutTenta,b.attempts))
-                    return beneficeB - beneficeA;
-                }
-                if(vm.sort == "name") return (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0)
-                if(vm.sort == "name-reverse") return (a.name < b.name) ? 1 : ((b.name < a.name) ? -1 : 0)
+                if(vm.sort == "benefice") return vm.benefice(a) - vm.benefice(b);
+                if(vm.sort == "benefice-reverse") return vm.benefice(b) - vm.benefice(a);
+                if(vm.sort == "benefice-estime") return vm.beneficeEstime(a) - vm.beneficeEstime(b);
+                if(vm.sort == "benefice-estime-reverse") return vm.beneficeEstime(b) - vm.beneficeEstime(a);
                 if(vm.sort == "cout-acquisition") return a.coutAcquisition - b.coutAcquisition;
                 if(vm.sort == "cout-acquisition-reverse") return b.coutAcquisition - a.coutAcquisition;
+                if(vm.sort == "cout-rune") return vm.coutTotalRunes(a) - vm.coutTotalRunes(b);
+                if(vm.sort == "cout-rune-reverse") return vm.coutTotalRunes(b) - vm.coutTotalRunes(a);
                 if(vm.sort == "prix") return a.prixDeVente - b.prixDeVente;
                 if(vm.sort == "prix-reverse") return b.prixDeVente - a.prixDeVente;
                 
@@ -193,22 +185,27 @@ export default {
         }
     },
     methods: {
-        beneficeEstime: function(typeExo,prixDeVente,coutAcquisition,coutTenta) {
-            let nbTentaMoyen =  (typeExo === "po") ? 51 : 100
-            return prixDeVente - coutAcquisition - coutTenta * nbTentaMoyen
+        beneficeEstime: function(item) {
+            let nbTentaMoyen =  (item.typeExo === "po") ? 51 : 100
+            return item.prixDeVente - item.coutAcquisition - item.coutTenta * nbTentaMoyen
         },
-        benefice: function(prixDeVente,coutAcquisition,coutTenta,attempts) {
-            return prixDeVente - coutAcquisition - coutTenta * attempts
+        benefice: function(item) {
+            return item.prixDeVente - item.coutAcquisition - item.coutTenta * item.attempts
         },
-        coutTotalRunes: function(coutTenta, nbTenta) {
-            return coutTenta * nbTenta
+        coutTotalRunes: function(item) {
+            return item.coutTenta * item.attempts
         },
         filterByType: function(type) {
-            this.filterType = type
+            if(this.filterType === type) {
+                this.filterType = "all"
+            } else {
+                this.filterType = type
+            }
         },
         reset: function() {
             this.search = ""
             this.filterType = "all"
+            this.sort = "id"
         },
         unsavedItem: function(id) {
             this.$store.dispatch('items/updateActiveItem', id)
@@ -255,21 +252,6 @@ thead {
         color: $purple30;
         font-weight: 600;
     }
-
-    button {
-        position: relative;
-        .c-icon {
-            position: absolute;
-            top: 50%;
-            right: 0;
-            transform: translate(100%, -50%);
-            font-size: 24px;
-        }
-
-        &:focus {
-            outline: 0;
-        }
-    }
 }
 
 tbody {
@@ -279,4 +261,40 @@ tbody {
         border-top: 1px solid $blue30;
     }
 }
+
+.button-sort {
+        position: relative;
+
+        .c-icon {
+            opacity: 0;
+            position: absolute;
+            top: 50%;
+            right: 0;
+            transform: translate(100%, -50%);
+            font-size: 24px;
+            transition: opacity $transition;
+        }
+
+        &:focus,
+        &:hover {
+            outline: 0;
+
+            .c-icon {
+                opacity: 1;
+            }
+        }
+
+        &.active {
+            .c-icon {
+                opacity: 1;
+            }
+        }
+
+        &.active-reverse {
+            .c-icon {
+                transform: translate(100%, -50%) rotate(180deg);
+                opacity: 1;
+            }
+        }
+    }
 </style>
