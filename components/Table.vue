@@ -1,7 +1,7 @@
 <template>
     <div>
         <h2 class="c-h2">Filtres</h2>
-        <div class="flex">
+        <div class="flex items-center">
             <div class="c-addon-container w-full max-w-xs">
                 <span class="c-icon icon-search_black_24dp"></span>
                 <input type="text" class="c-input" placeholder="Ex : Anneau" v-model="search">
@@ -21,6 +21,7 @@
                 </button>
             </div>
             <TheButton @click.native="reset()" :disabled="search === '' && filterType === 'all' && sort === 'id'" class="ml-12 --grey30 --small">Reset</TheButton>
+            <p class="ml-auto"><span class="font-bold">{{itemsFiltered.length}}</span> item{{ (itemsFiltered.length > 1 ? 's' : '')}} affiché{{ (itemsFiltered.length > 1 ? 's' : '')}}</p>
 
         </div>
 
@@ -66,7 +67,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="(item) in itemsSorted" :key="item.id">
+                <tr v-for="(item) in itemsSorted" :key="item.id" :class="{'u-bg-red5': item.exoPasse === false}">
                     <td>
                         <p>{{item.id}}</p>
                     </td>
@@ -133,12 +134,9 @@ export default {
         }
     },
     computed: {
-        items: function () {
-            let items = this.$store.getters['items/getItems']
-            return items.filter(item => item.isSave);
-        },
         itemsFiltered: function() {
-            return this.items.filter(item => {
+            let items = this.$store.getters['items/getItems'].filter(item => item.isSave)
+            return items.filter(item => {
                 let pass = true
 
                 // Si l'utilisateur utilise le champ de recherche

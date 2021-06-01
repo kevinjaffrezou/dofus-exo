@@ -1,6 +1,7 @@
 export const state = () => ({
     settings: {
-        openNewItem: false
+        openNewItem: false,
+        openStatistics: false
     },
     modalDeleteItem: {
         show: false,
@@ -30,6 +31,12 @@ export const mutations = {
     },
     CLOSE_NEWITEM(state) {
         state.settings.openNewItem = false
+    },
+    OPEN_STATISTICS(state) {
+        state.settings.openStatistics = true
+    },
+    CLOSE_STATISTICS(state) {
+        state.settings.openStatistics = false
     },
     OPEN_MODALDELETEITEM(state, itemId) {
         state.modalDeleteItem.show = true

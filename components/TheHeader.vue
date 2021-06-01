@@ -8,7 +8,7 @@
                     <NuxtLink to="/about" class="c-link">À propos</NuxtLink>
                 </div>
                 <div class="flex justify-end items-center">
-                    <a href="javascript:void(0);" class="c-link">Statistiques</a>
+                    <button @click="openStatistics" class="c-link">Statistiques</button>
                     <TheButton @click.native="openNewItem" icon="icon-add_black_24dp" class="--primary --stroked">Ajouter un exo</TheButton>
                 </div>
             </div>
@@ -22,6 +22,10 @@ export default {
         openNewItem: function() {
             if(this.$route.path !== '/') this.$router.push('/')
             this.$store.commit('OPEN_NEWITEM')
+        },
+        openStatistics: function() {
+            if(this.$route.path !== '/') this.$router.push('/')
+            this.$store.commit('OPEN_STATISTICS')
         }
     }
 }

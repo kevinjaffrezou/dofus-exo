@@ -1,5 +1,6 @@
 <template>
   <div>
+    <Statistics v-if="getSettings.openStatistics"></Statistics>
     <div class="container-fluid mt-20">
       <div class="grid grid-cols-12 gap-x-5">
         <div>
@@ -36,6 +37,7 @@ export default {
     },
     destroyed() {
       this.$store.commit('CLOSE_NEWITEM')
+      this.$store.commit('CLOSE_STATISTICS')
     },
     async fetch() {
       const items = await this.$nuxt.$DB.inventory.toArray();

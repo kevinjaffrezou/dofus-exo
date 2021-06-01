@@ -9,7 +9,7 @@
                 Archiver
             </p>
             <p class="text-center mt-2">
-                L'item s'affichera dans le tableau et la tentative d'exo pourra être repris en cliquant sur l'icone "rafraichir"
+                L'item s'affichera en <span class="u-red20">rouge</span> dans le tableau et la tentative d'exo pourra être reprise en cliquant sur l'icone "rafraîchir"
             </p>
             <div class="flex justify-between mt-8">
                 <TheButton @click.native="hideModal()" class="--stroked">Annuler</TheButton>
@@ -32,7 +32,7 @@ export default {
             let vm = this;
             this.$store.dispatch('items/updateItem', {
                 id: vm.getModalArchiveItem.itemId,
-                data: {'isSave': true, 'active': false}
+                data: {'isSave': true, 'active': false, 'exoPasse': false}
             })
             this.hideModal()
         },

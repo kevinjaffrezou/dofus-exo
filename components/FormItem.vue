@@ -148,7 +148,7 @@ export default {
             let vm = this;
             this.$store.dispatch('items/updateItem', {
                 id: vm.getActiveItem.id,
-                data: {'isSave': true, 'active': false}
+                data: {'isSave': true, 'active': false, 'exoPasse': true}
             })
         }
     }

@@ -6,4 +6,8 @@
     &.--blue {
         color: $blue40;
     }
+
+    &:focus {
+        outline: 0;
+    }
 }

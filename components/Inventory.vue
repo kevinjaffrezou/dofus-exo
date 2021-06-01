@@ -1,5 +1,5 @@
 <template>
-    <div v-if="items.length !== 0">
+    <div v-if="this.items.length > 0">
         <h2 class="c-h2">Inventaire</h2>
         <div class="relative">
             <div class="inventory-container">
