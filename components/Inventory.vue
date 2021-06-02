@@ -1,6 +1,7 @@
 <template>
+<transition name="fade">
     <div v-if="this.items.length > 0">
-        <h2 class="c-h2">Inventaire</h2>
+        <h2 class="c-h2 mt-20">Inventaire</h2>
         <div class="relative">
             <div class="inventory-container">
                 <div class="c-card inventory u-shadow-default p-2 mt-2">
@@ -25,6 +26,7 @@
             </div>
         </div>
     </div>
+</transition>
 </template>
 
 <script>
@@ -78,14 +80,18 @@ export default {
         // Reset button tag
         width: 100%;
         text-align: left;
+        border: 1px solid transparent;
+        transition: border $transition;
 
         &:hover,
         &:focus {
             outline: 0;
+            border: 1px solid $blue30;
         }
 
         &.is-active {
             background-color: $blue20;
+            border-color: $blue20;
         }
     }
 

@@ -1,5 +1,5 @@
 <template>
-    <div class="c-card p-6 mb-20">
+    <div class="c-card p-6 mt-20">
         <div class="c-card__buttons">
             <button @click="close" class="c-card__button"><span class="c-icon icon-close_black_24dp"></span></button>
         </div>

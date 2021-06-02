@@ -1,5 +1,5 @@
 <template>
-    <div class="container-900 mt-12 mb-20">
+    <div class="container-900 mt-12">
         <div class="c-card u-shadow-default text-center p-6">
             <div class="c-card__buttons">
                 <button @click="close" class="c-card__button"><span class="c-icon icon-close_black_24dp"></span></button>
@@ -10,7 +10,7 @@
                     <p class="text-lg u-grey20">Bénéfice total</p>
                 </div>
                 <div>
-                    <p class="text-lg u-grey20">Exos réussis</p>
+                    <p class="text-lg u-grey20">Exos passés</p>
                 </div>
                 <div>
                     <p class="text-lg u-grey20">Moyenne de tentatives par exo PA/PM</p>
@@ -60,6 +60,7 @@ export default {
                     nbTenta += item.attempts
                 }
             })
+            if (exo === 0) return 0
             return Math.round(nbTenta / exo)
         }
     },

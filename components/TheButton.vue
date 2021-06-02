@@ -22,6 +22,7 @@ export default {
     background: $grey20;
     color: #fff;
     transition: color $transition, background-color $transition, opacity $transition;
+    -webkit-appearance: none;
 
     &:hover,
     &:focus {
@@ -36,8 +37,19 @@ export default {
     &.--grey30 {
         background: $grey30;
 
+        &:hover,
+        &:focus {
+            background: $grey35;
+        }
+
         &:disabled {
             opacity: .5;
+            cursor: default;
+
+            &:hover,
+            &:focus {
+                background: $grey30;
+            }
         }
     }
 
@@ -69,6 +81,11 @@ export default {
         background: $blue40;
         color: #fff;
 
+        &:hover,
+        &:focus {
+            background: $blue45;
+        }
+
         &.--stroked {
             border: solid 2px $blue40;
             background: transparent;
@@ -85,6 +102,11 @@ export default {
     &.--red {
         background: $red20;
         color: #fff;
+
+        &:hover,
+        &:focus {
+            background: $red25;
+        }
     }
 }
 </style>

@@ -25,5 +25,9 @@ export default {
             exprContextCritical: false // FIX: Critical dependency: the request of a dependency is an expression
         },
         cache: true
+    },
+    loading: {
+        color: '#3f87f3',
+        height: '3px'
     }
 }

@@ -4,12 +4,17 @@
 
     .c-icon {
         color: $grey20;
+        transition: color $transition;
     }
 
     &:hover {
         &:before,
         &:after {
             opacity: 1;
+        }
+
+        .c-icon {
+            color: $blue40;
         }
     }
 

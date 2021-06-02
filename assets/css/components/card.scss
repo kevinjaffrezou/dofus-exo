@@ -17,14 +17,28 @@
         height: 35px;
         width: 35px;
         background-color: $blue20;
+        transition: background-color $transition;
 
         .c-icon {
-            font-size: 22px;
+            font-size: 20px;
             color: $grey40;
+            transition: color $transition;
         }
-
+    
+        &:hover,
         &:focus {
             outline: 0;
+            background-color: $blue40;
+            .c-icon {
+                color: white;
+            }
+        }
+
+        &.--red {
+            &:hover,
+            &:focus {
+                background-color: $red20;
+            }
         }
     }
 }

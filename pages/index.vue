@@ -1,14 +1,18 @@
 <template>
   <div>
-    <Statistics v-if="getSettings.openStatistics"></Statistics>
-    <div class="container-fluid mt-20">
+    <transition name="fadeup">
+      <Statistics v-if="getSettings.openStatistics"></Statistics>
+    </transition>
+    <div class="container-fluid">
       <div class="grid grid-cols-12 gap-x-5">
         <div>
           <Inventory></Inventory>
         </div>
         <div class="col-span-10">
           <div class="container-730">
-            <NewItem :dofusEquiments="equipements" v-if="getSettings.openNewItem"></NewItem>
+            <transition name="fadeup">
+              <NewItem :dofusEquiments="equipements" v-if="getSettings.openNewItem"></NewItem>
+            </transition>
             <FormItem></FormItem>
           </div>
         </div>
@@ -17,8 +21,12 @@
     <div class="container-fluid mt-24">
       <Table/>
     </div>
-    <ModalDeleteItem v-if="getModalDeleteItem.show"></ModalDeleteItem>
-    <ModalArchiveItem v-if="getModalArchiveItem.show"></ModalArchiveItem>
+    <transition name="modal">
+      <ModalDeleteItem v-if="getModalDeleteItem.show"></ModalDeleteItem>
+    </transition>
+    <transition name="modal">
+      <ModalArchiveItem v-if="getModalArchiveItem.show"></ModalArchiveItem>
+    </transition>
   </div>
 </template>
 

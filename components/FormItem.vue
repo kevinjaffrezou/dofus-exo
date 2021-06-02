@@ -1,8 +1,9 @@
 <template>
-    <div class="c-card p-6" v-if="getActiveItem">
+<transition name="fade">
+    <div class="c-card p-6 mt-20" v-if="getActiveItem">
         <div class="c-card__buttons">
-            <button @click="$store.commit('OPEN_MODALARCHIVEITEM', getActiveItem.id)" class="c-card__button"><span class="c-icon icon-inventory_2_black_24dp"></span></button>
-            <button @click="$store.commit('OPEN_MODALDELETEITEM', getActiveItem.id)" class="c-card__button"><span class="c-icon icon-delete_black_24dp"></span></button>
+            <button @click="$store.commit('OPEN_MODALARCHIVEITEM', getActiveItem.id)" class="c-card__button"><span class="c-icon icon-archive_black_24dp"></span></button>
+            <button @click="$store.commit('OPEN_MODALDELETEITEM', getActiveItem.id)" class="c-card__button --red"><span class="c-icon icon-delete_black_24dp"></span></button>
         </div>
         <div class="flex">
             <div class="c-badge">
@@ -96,6 +97,7 @@
             </div>
         </div>
     </div>
+</transition>
 </template>
 
 <script>

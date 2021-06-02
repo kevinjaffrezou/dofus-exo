@@ -112,7 +112,7 @@
                     </td>
                     <td>
                         <button @click="unsavedItem(item.id)" class="c-button-icon">
-                            <span class="c-icon icon-replay_black_24dp"></span>
+                            <span class="c-icon icon-unarchive_black_24dp"></span>
                         </button>
                         <button @click="$store.commit('OPEN_MODALDELETEITEM', item.id)" class="c-button-icon ml-5">
                             <span class="c-icon icon-delete_black_24dp"></span>
@@ -121,6 +121,16 @@
                 </tr>
             </tbody>
         </table>
+        <div class="calltoaction" v-if="itemsFiltered.length === 0">
+            <img src="/img/default-item.png" class="c-img" alt="">
+            <p class="text-2xl u-grey20 mt-4">
+                0 item enregistré
+            </p>
+            <p class="text-xl u-grey20 mt-4">
+                Valider votre premier exo et <br>
+                analysez vos bénéfices
+            </p>
+        </div>
     </div>
 </template>
 
@@ -257,6 +267,18 @@ tbody {
 
     tr + tr {
         border-top: 1px solid $blue30;
+    }
+}
+
+.calltoaction {
+    padding-top: 80px;
+    padding-bottom: 140px;
+    background-color: #fff;
+    text-align: center;
+
+    .c-img {
+        height: 100px;
+        margin: auto;
     }
 }
 

@@ -9,6 +9,7 @@
     box-shadow: $shadow-default;
     max-height: 250px;
     overflow-y: scroll;
+    z-index: map-get($zindex, dropdown);
 
     &::-webkit-scrollbar {
         display: none;

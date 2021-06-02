@@ -1,0 +1,61 @@
+// -----
+// fadeup
+// -----
+.fadeup-enter-active, .fadeup-leave-active {
+    transition: opacity .4s, transform .4s;
+}
+.fadeup-enter {
+    opacity: 0;
+    transform: translateY(50px);
+}
+.fadeup-enter-to, .fadeup-leave {
+    opacity: 1;
+    transform: translateY(0);
+}
+.fadeup-leave-to {
+    opacity: 0;
+    transform: translateY(-50px);
+}
+
+// -----
+// fade
+// -----
+.fade-enter-active, .fade-leave-active {
+    transition: opacity .4s;
+}
+.fade-enter {
+    opacity: 0;
+    z-index: 5;
+}
+.fade-enter-to, .fade-leave {
+    opacity: 1;
+}
+.fade-leave-to {
+    opacity: 0;
+    z-index: 2;
+}
+
+// -----
+// Modal
+// -----
+.modal-enter-active, .modal-leave-active {
+    transition: opacity .4s;
+
+    .c-modal {
+        transition: top .4s;
+    }
+}
+.modal-enter, .modal-leave-to {
+    opacity: 0;
+
+    .c-modal {
+        top: calc(50% + 50px);
+    }
+}
+.modal-enter-to, .modal-leave {
+    opacity: 1;
+
+    .c-modal {
+        top: calc(50% + 0);
+    }
+}
