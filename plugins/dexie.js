@@ -1,4 +1,8 @@
 import Dexie from 'dexie'
+import {
+    importDB,
+    exportDB
+} from "dexie-export-import";
 
 export default (context, inject) => {
     const db = new Dexie('Dofus-exo');
@@ -7,6 +11,6 @@ export default (context, inject) => {
     });
     // Inject $hello(msg) in Vue, context and store.
     inject('DB', db)
-    // For Nuxt <= 2.12, also add 👇
-    context.$DB = db
+    inject('ExportDB', exportDB)
+    inject('ImportDB', importDB)
 }

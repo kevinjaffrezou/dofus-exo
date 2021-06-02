@@ -1,10 +1,11 @@
 export default {
+    ssr: false,
     target: 'static',
     components: true,
     css: ['~/assets/css/main.scss'],
     buildModules: ['@nuxtjs/tailwindcss', '@nuxtjs/style-resources'],
     modules: ['@nuxt/content'],
-    plugins: ['~/plugins/numberWithSpaces.js', '~/plugins/dexie.js', '~/plugins/tooltip.js'],
+    plugins: ['~/plugins/numberWithSpaces.js', '~/plugins/dexie.js', '~/plugins/download.js'],
     styleResources: {
         scss: '~/assets/css/base/variables.scss'
     },
