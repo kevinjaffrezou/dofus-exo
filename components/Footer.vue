@@ -1,6 +1,9 @@
 <template>
     <footer>
-        <div class="container-900">
+        <div class="container-fluid">
+            <hr>
+        </div>
+        <div class="container-900 mt-12">
             <div class="grid grid-cols-3 gap-x-14">
                 <div>
                     <h2 class="c-h2">Titre du site</h2>
@@ -18,8 +21,8 @@
                     <a @click="downloadCSV()" href="javascript:void(0);" class="c-link c-link--icon">Télécharger les données en CSV <span class="c-icon icon-file_download_black_24dp"></span></a>
                     <div class="flex link-upload">
                         <input @change="detectJson($event)" class="c-input-file" type="file" name="db-file" id="db-file" accept="application/json">
-                        <label for="db-file" class="flex-1" v-if="fileName === ''">Choisir un fichier...</label>
-                        <label for="db-file" class="active flex-1" v-else>{{fileName}}</label>
+                        <label v-if="fileName === ''" for="db-file" class="flex-1">Choisir un fichier...</label>
+                        <label v-else for="db-file" class="active flex-1 truncate" :title="fileName">{{fileName}}</label>
 
                         <button :disabled="fileName === ''" class="c-button-square ml-4" @click="importDB()" title="Importer la base de donnée">
                             <span class="c-icon icon-file_upload_black_24dp"></span>
@@ -30,10 +33,6 @@
                 </div>
             </div>
         </div>
-        <!-- <input type="file" name="db-file" id="db-file" accept="application/json">
-        <button @click="importDB()">
-            Importer la base de donnée
-        </button> -->
     </footer>
 </template>
 
@@ -81,9 +80,21 @@ export default {
                     top: 0,
                     behavior: 'smooth'
                 });
+
+                this.$toast.show({
+                    type: 'success',
+                    timeout: 7,
+                    message: 'La base de données '+this.fileName+' a bien été importée !',
+                })
             }
             catch {
                 console.log("err");
+                this.$toast.show({
+                    type: 'danger',
+                    title: 'Erreur',
+                    timeout: 20,
+                    message: "La base de données n'a pas pu être importé, assurez vous qu'elle a été exporté sur cette application. Puis rechargez la page et réessayez.",
+                })
 
             }
             
@@ -97,10 +108,7 @@ export default {
 footer {
     margin: 0 auto;
     margin-top: 70px;
-    padding-top: 40px;
     padding-bottom: 60px;
-    max-width: 1440px;
-    border-top: 1px solid $grey10;
 
     .c-h2 {
         margin-bottom: 32px;

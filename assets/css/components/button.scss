@@ -70,6 +70,7 @@
 
     &:hover,
     &:focus {
+        outline: none;
         background-color: $blue45;
     }
 
@@ -85,5 +86,10 @@
     &:disabled {
         cursor: default;
         opacity: .5;
+
+        &:hover,
+        &:focus {
+            background-color: $blue40;
+        }
     }
 }

@@ -1,14 +1,15 @@
 .c-link {
     &.nuxt-link-exact-active {
-        text-decoration: underline;
     }
 
     &.--blue {
         color: $blue40;
     }
 
+    &:hover,
     &:focus {
         outline: 0;
+        text-decoration: underline;
     }
 
     &--icon {
