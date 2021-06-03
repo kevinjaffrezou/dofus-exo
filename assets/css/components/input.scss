@@ -81,3 +81,29 @@
         }
     }
 }
+
+.c-input-file {
+    width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+
+    & + label {
+        display: inline-block;
+        height: 45px;
+        border: 1px dashed #000000;
+        font-size: 14px;
+        color: $grey30;
+        width: 100%;
+        padding-left: 16px;
+        line-height: 45px;
+        cursor: pointer;
+        border-radius: 2px;
+
+        &.active {
+            border: 1px solid $blue40;
+        }
+    }
+}

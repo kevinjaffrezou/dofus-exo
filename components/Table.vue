@@ -121,7 +121,7 @@
                 </tr>
             </tbody>
         </table>
-        <div class="calltoaction" v-if="itemsFiltered.length === 0">
+        <div class="calltoaction" v-if="items.length === 0">
             <img src="/img/default-item.png" class="c-img" alt="">
             <p class="text-2xl u-grey20 mt-4">
                 0 item enregistré
@@ -144,9 +144,11 @@ export default {
         }
     },
     computed: {
+        items: function() {
+            return this.$store.getters['items/getItems'].filter(item => item.isSave)
+        },
         itemsFiltered: function() {
-            let items = this.$store.getters['items/getItems'].filter(item => item.isSave)
-            return items.filter(item => {
+            return this.items.filter(item => {
                 let pass = true
 
                 // Si l'utilisateur utilise le champ de recherche

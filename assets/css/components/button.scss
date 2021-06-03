@@ -59,3 +59,31 @@
         }
     }
 }
+
+.c-button-square {
+    position: relative;
+    height: 45px;
+    width: 45px;
+    border-radius: 2px;
+    background-color: $blue40;
+    transition: opacity $transition, background-color $transition;
+
+    &:hover,
+    &:focus {
+        background-color: $blue45;
+    }
+
+    .c-icon {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        color: white;
+        font-size: 24px;
+        transform: translate(-50%, -50%);
+    }
+
+    &:disabled {
+        cursor: default;
+        opacity: .5;
+    }
+}
