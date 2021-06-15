@@ -26,6 +26,12 @@ export default {
             {
                 rel: 'stylesheet',
                 href: 'https://fonts.googleapis.com/css2?family=Roboto@400;600;700&display=swap'
+            },
+            {
+                rel: 'icon',
+                type: 'image/png',
+                sizes: '96x96',
+                href: '/favicon-96x96.png'
             }
         ]
     },

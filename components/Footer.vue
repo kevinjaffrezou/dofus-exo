@@ -19,6 +19,7 @@
                     <h2 class="c-h2">Base de données</h2>
                     <a @click="download()" href="javascript:void(0);" class="c-link c-link--icon">Télécharger les données en JSON <span class="c-icon icon-file_download_black_24dp"></span></a>
                     <a @click="downloadCSV()" href="javascript:void(0);" class="c-link c-link--icon">Télécharger les données en CSV <span class="c-icon icon-file_download_black_24dp"></span></a>
+                    <p class="c-p mt-6">Importer une Base de donnée (json)</p>
                     <div class="flex link-upload">
                         <input @change="detectJson($event)" class="c-input-file" type="file" name="db-file" id="db-file" accept="application/json">
                         <label v-if="fileName === ''" for="db-file" class="flex-1">Choisir un fichier...</label>
@@ -49,7 +50,7 @@ export default {
         },
         download: async function() {
             let db = await this.$nuxt.$ExportDB(this.$nuxt.$DB)
-            $nuxt.$Download(db, "dexie-export.json", "application/json");
+            $nuxt.$Download(db, "dofus-exo-db.json", "application/json");
         },
         downloadCSV: async function() {
             let vm = this
@@ -60,7 +61,7 @@ export default {
 
             let json2csvCallback = function (err, csv) {
                 if (err) throw err;
-                vm.$nuxt.$Download(csv, "dexie-export.csv", "text/csv");
+                vm.$nuxt.$Download(csv, "dofus-exo-db.csv", "text/csv");
             };
 
             $nuxt.$json2csv(items, json2csvCallback, options)
@@ -123,7 +124,7 @@ footer {
     }
 
     .link-upload {
-        margin-top: 24px;
+        margin-top: 4px;
     }
 }
 </style>
