@@ -15,9 +15,9 @@
                 </div>
                 <div class="flex justify-between p-benefice-container">
                     <div class="w-5/12" v-if="getActiveItem.typeExo !== 'none'">
-                        <p class="c-p">
+                        <p class="c-p relative inline-block">
                             Bénéfice estimé 
-                            <span class="c-tooltip" data-before="Bénéfice si la tentative d’exo se fait à la 100ième tentatives Permet de calculer la rentabilité spéculative de l’exo"><sup  class="c-icon icon-help_outline_black_24dp"></sup></span>
+                            <span class="c-tooltip  --absolute" data-before="Bénéfice si la tentative d’exo se fait à la 100ième tentatives Permet de calculer la rentabilité spéculative de l’exo"><sup  class="c-icon icon-help_outline_black_24dp"></sup></span>
                         </p>
                         <p :class="{'u-green10': Math.sign(beneficeEstime) === 1, 'u-red10': Math.sign(beneficeEstime) === -1}" class="c-p text-sm text-right">{{$nuxt.$numberWithSpaces(beneficeEstime)}}</p>
                     </div>

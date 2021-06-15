@@ -4,7 +4,7 @@
             <hr>
         </div>
         <div class="container-900 mt-12">
-            <div class="grid grid-cols-3 gap-x-14">
+            <div class="grid grid-cols-3 gap-x-10">
                 <div>
                     <h2 class="c-h2">Titre du site</h2>
                 </div>

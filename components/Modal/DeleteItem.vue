@@ -6,6 +6,9 @@
             </div>
 
             <p class="c-h2 text-center">
+                Supprimer
+            </p>
+            <p class="mt-2 text-center">
                 Êtes vous sûr de vouloir supprimer définitivement cet item ?
             </p>
             <div class="flex justify-between mt-8">
