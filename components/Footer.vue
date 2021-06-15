@@ -6,7 +6,7 @@
         <div class="container-900 mt-12">
             <div class="grid grid-cols-3 gap-x-10">
                 <div>
-                    <h2 class="c-h2">Titre du site</h2>
+                    <h2 class="c-h2">Dofus exo</h2>
                 </div>
                 <div>
                     <h2 class="c-h2">Infos</h2>

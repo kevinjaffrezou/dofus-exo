@@ -46,7 +46,7 @@
                     </div>
                     <div class="flex-grow">
                         <p class="leading-relaxed text-base">L'ensemble de vos données sont sauvegardées dans une base de données géré par votre navigateur (IndexedDB). Ce qui veut dire qu'il n'y a aucun serveur pour faire fonctionner le site. <br>
-                        <b class="u-red10">Attention !</b> Si vous vider votre cache l'ensemble des données seront remises à Zero !
+                        <b class="u-red10">Attention !</b> Si vous vider le cache de votre navigateur l'ensemble des données seront remises à Zero !
                         </p>
                         <!-- <a class="mt-3 u-blue40 inline-flex items-center">Learn More
                         <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-2" viewBox="0 0 24 24">
