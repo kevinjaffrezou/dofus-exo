@@ -6,6 +6,10 @@ export const getters = {
     getItems: (state) => {
         return state.items
     },
+    getSavedItemsLength: (state) => {
+        let savedItems = state.items.filter(item => item.isSave)
+        return savedItems.length
+    },
     getActiveItem: (state) => {
         return state.items.find(item => item.active === true)
     },

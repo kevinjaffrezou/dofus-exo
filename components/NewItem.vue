@@ -92,8 +92,16 @@ export default {
             this.items = []
         },
         addItem: function (item) {
-            if(!this.selectedItem.dofusId) return
-            this.$store.dispatch('items/addItem', item)
+            if(this.selectedItem.dofusId) {
+                this.$store.dispatch('items/addItem', item)
+            } else {
+                this.$store.dispatch('items/addItem', {
+                    dofusId: 0,
+                    img: '/img/default-item.png',
+                    name: this.searchInput,
+                    type: null
+                })
+            }
             this.selectedItem = {img: '/img/default-item.png'} // Remove current search
             this.searchInput = '' // clear search input
             this.$store.commit('CLOSE_NEWITEM') // Close composant

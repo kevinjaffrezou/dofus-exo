@@ -109,6 +109,9 @@ export default {
         getActiveItem: function () {
             return this.$store.getters['items/getActiveItem']
         },
+        savedItemsLength: function() {
+            return this.$store.getters['items/getSavedItemsLength']
+        },
         nbTentaMoyen: function () {
             return (this.getActiveItem.typeExo === "po") ? 51 : 100
         },
@@ -152,6 +155,17 @@ export default {
                 id: vm.getActiveItem.id,
                 data: {'isSave': true, 'active': false, 'exoPasse': true}
             })
+
+            // Notifie l'utilisateur de sauvegarder ses données si le nombre d'item
+            // sauvegardé est égale à 1 ou un multiple de 5
+            if (this.savedItemsLength === 1 || this.savedItemsLength %  5 === 0) {
+                this.$toast.show({
+                    type: 'info',
+                    title: 'Sauvegardez votre base de données',
+                    timeout: 60,
+                    message: "Les données sont stockées sur votre appareil. Si vous vider votre cache navigateur, la base de données le sera également. Pour éviter de tout perdre, pensez à télécharger la base de données en format JSON (lien dans le footer)",
+                })
+            }
         }
     }
 }

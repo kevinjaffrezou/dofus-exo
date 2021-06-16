@@ -4,8 +4,8 @@
             <div class="container-1400 mx-auto flex px-5 py-24 items-center justify-center flex-col">
                 <div class="text-center lg:w-2/3 w-full">
                     <h1 class="c-h1 sm:text-4xl u-fz-large mb-4">Dofus exo</h1>
-                    <p class="leading-relaxed text-lg">Dofus exo est une application web qui vous permet d'<strong>historiser l'ensemble de vos exos</strong> en y sauvegardant leurs coût ainsi que leurs prix de vente afin de calculer le benefice total de vos items.</p>
-                    <img loading="lazy" src="/img/dofus-exo.jpg" alt="" class="c-img m-auto mb-4">
+                    <p class="leading-relaxed text-lg">Dofus exo est une application web qui vous permet d'<strong>historiser l'ensemble de vos exos</strong> en y sauvegardant leurs coûts ainsi que leurs prix de vente afin de calculer le benefice total de vos items.</p>
+                    <img loading="lazy" src="/img/dofus-exo.jpg" alt="" class="c-img m-auto mb-4" width="828" height="556">
                     <div class="flex justify-center">
                         <NuxtLink to="/exos" class="c-link"><TheButton class="--primary">Voir votre dashboard</TheButton></NuxtLink>
                     </div>

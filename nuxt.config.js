@@ -18,7 +18,7 @@ export default {
         scss: '~/assets/css/base/variables.scss'
     },
     head: {
-        title: 'Dofus exo',
+        title: 'Dofus exo | Stockez la liste de vos exos',
         link: [{
                 rel: 'preconnect',
                 href: 'https://fonts.gstatic.com'
