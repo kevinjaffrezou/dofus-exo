@@ -1,3 +1,7 @@
+const OG_TITLE = 'Dofus exo | Stockez la liste de vos exos'
+const OG_DESCRIPTION = "Historiser l'ensemble de vos exos Dofus en y sauvegardant leurs coûts ainsi que leurs prix de vente afin de calculer le benefice total de vos items."
+const OG_IMAGE = 'https://dofus-exo.fr/opengraph.jpg'
+
 export default {
     target: 'static',
     components: true,
@@ -18,7 +22,73 @@ export default {
         scss: '~/assets/css/base/variables.scss'
     },
     head: {
-        title: 'Dofus exo | Stockez la liste de vos exos',
+        meta: [{
+                charset: 'utf-8'
+            },
+            {
+                name: 'viewport',
+                content: 'width=device-width, initial-scale=1'
+            },
+            {
+                hid: 'description',
+                name: 'description',
+                content: OG_DESCRIPTION
+            },
+            {
+                hid: 'twitter:title',
+                name: 'twitter:title',
+                content: OG_TITLE
+            },
+            {
+                hid: 'twitter:description',
+                name: 'twitter:description',
+                content: OG_DESCRIPTION
+            },
+            {
+                hid: 'twitter:image',
+                name: 'twitter:image',
+                content: OG_IMAGE
+            },
+            {
+                hid: 'twitter:card',
+                name: 'twitter:card',
+                content: "summary_large_image"
+            },
+            {
+                hid: 'twitter:image:alt',
+                name: 'twitter:image:alt',
+                content: OG_TITLE
+            },
+            {
+                hid: 'og:title',
+                property: 'og:title',
+                content: OG_TITLE
+            },
+            {
+                hid: 'og:description',
+                property: 'og:description',
+                content: OG_DESCRIPTION
+            },
+            {
+                hid: 'og:image',
+                property: 'og:image',
+                content: OG_IMAGE
+            },
+            {
+                hid: 'og:image:secure_url',
+                property: 'og:image:secure_url',
+                content: OG_IMAGE
+            },
+            {
+                hid: 'og:image:alt',
+                property: 'og:image:alt',
+                content: OG_TITLE
+            },
+        ],
+        htmlAttrs: {
+            lang: 'fr',
+        },
+        title: OG_TITLE,
         link: [{
                 rel: 'preconnect',
                 href: 'https://fonts.gstatic.com'
