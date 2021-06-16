@@ -4,8 +4,8 @@
             <div class="grid grid-cols-3 gap-2.5 content-center">
                 <div></div>
                 <div class="flex justify-center items-center">
-                    <NuxtLink to="/about" class="c-link">Comment ça marche ?</NuxtLink>
-                    <NuxtLink to="/" class="c-link">Mes exos</NuxtLink>
+                    <NuxtLink to="/" class="c-link">Comment ça marche ?</NuxtLink>
+                    <NuxtLink to="/exos" class="c-link">Mes exos</NuxtLink>
                 </div>
                 <div class="flex justify-end items-center">
                     <button @click="openStatistics" class="c-link">Statistiques</button>
