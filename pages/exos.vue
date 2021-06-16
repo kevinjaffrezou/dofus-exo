@@ -4,7 +4,7 @@
       <Statistics v-if="getSettings.openStatistics"></Statistics>
     </transition>
     <div class="container-fluid">
-      <div class="grid grid-cols-12 gap-x-5">
+      <div class="md:grid md:grid-cols-12 gap-x-5">
         <div>
           <Inventory></Inventory>
         </div>

@@ -22,7 +22,18 @@
     font-size: 30px;
 }
 
-
 .u-shadow-default {
     box-shadow: $shadow-default !important;
+}
+
+.u-margin-t-20-md-down {
+    @media (max-width: 768px) { 
+        margin-top: 20px;
+    }
+}
+
+.u-padding-t-20-md-down {
+    @media (max-width: 768px) { 
+        padding-top: 20px;
+    }
 }

@@ -4,16 +4,14 @@
             <hr>
         </div>
         <div class="container-900 mt-12">
-            <div class="grid grid-cols-3 gap-x-10">
+            <div class="grid md:grid-cols-3 gap-y-10 gap-x-10">
                 <div>
                     <h2 class="c-h2">Dofus exo</h2>
                 </div>
                 <div>
                     <h2 class="c-h2">Infos</h2>
-                    <a href="#" class="c-link">Un problème ? Une question ?</a>
-                    <a href="#" class="c-link">Code source de l’application</a>
-                    <a href="#" class="c-link">Twitter</a>
-
+                    <a href="https://docs.google.com/forms/d/1gna_V1oLfyANrQbYV8T8WAtHZlYhxULQRdHnhjPbJgg/viewform?edit_requested=true" target="_blank" class="c-link">Un problème ? Une question ?</a>
+                    <a href="https://github.com/kevinjaffrezou/dofus-exo" target="_blank" class="c-link">Code source de l’application</a>
                 </div>
                 <div>
                     <h2 class="c-h2">Base de données</h2>

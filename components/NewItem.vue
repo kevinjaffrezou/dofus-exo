@@ -3,11 +3,11 @@
         <div class="c-card__buttons">
             <button @click="close" class="c-card__button"><span class="c-icon icon-close_black_24dp"></span></button>
         </div>
-        <div class="flex flex-row items-center">
+        <div class="flex flex-col md:flex-row items-center">
             <div class="c-badge">
                 <img :src="selectedItem.img" />
             </div>
-            <div class="c-addon-container flex-1 mx-9">
+            <div class="c-addon-container flex-1 md-mx-9 u-margin-t-20-md-down">
                 <span class="c-icon icon-search_black_24dp"></span>
                 <input v-model="searchInput" type="text" class="c-input" placeholder="Rechercher un item Dofus">
                 <ul class="c-selectbox" v-if="items.length">
@@ -17,7 +17,7 @@
                     </li>
                 </ul>
             </div>
-            <TheButton class="--primary" @click.native="addItem(selectedItem)">Ajouter</TheButton>
+            <TheButton class="--primary u-margin-t-20-md-down" @click.native="addItem(selectedItem)">Ajouter</TheButton>
         </div>
     </div>
 </template>

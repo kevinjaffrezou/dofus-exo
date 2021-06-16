@@ -5,11 +5,11 @@
             <button @click="$store.commit('OPEN_MODALARCHIVEITEM', getActiveItem.id)" class="c-card__button"><span class="c-icon icon-archive_black_24dp"></span></button>
             <button @click="$store.commit('OPEN_MODALDELETEITEM', getActiveItem.id)" class="c-card__button --red"><span class="c-icon icon-delete_black_24dp"></span></button>
         </div>
-        <div class="flex">
+        <div class="flex flex-col md:flex-row">
             <div class="c-badge">
                 <img :src="getActiveItem.img" />
             </div>
-            <div class="ml-9 flex flex-col justify-between flex-grow">
+            <div class="md:ml-9 flex flex-col justify-between flex-grow">
                 <div>
                     <h1 class="c-h1">{{getActiveItem.name}}</h1>
                 </div>
@@ -28,8 +28,8 @@
                 </div>
             </div>
         </div>
-        <div class="grid grid-cols-3 gap-x-10 gap-y-5 mt-6 items-center">
-            <div class="text-right">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-x-10 gap-y-5 mt-6 items-center">
+            <div class="md:text-right">
                 <label class="c-p">Type d’exo</label>
             </div>
             <div class="flex justify-between">
@@ -55,7 +55,7 @@
                 </div>
                 <TheButton @click.native="saveItem()" class="--primary mt-5 w-full">Passé !</TheButton>
             </div>
-            <div class="text-right">
+            <div class="md:text-right">
                 <label class="c-p relative">Coût d'acquisition <span class="c-tooltip --absolute" data-before="Prix d’achat de l’item ou coût total des ressources"><sup  class="c-icon icon-help_outline_black_24dp"></sup></span></label>
             </div>
             <div>
@@ -64,7 +64,7 @@
                     <img src="/img/kamas.png" srcset="/img/kamas.png 1x, /img/kamas@2x.png 2x" alt="" class="c-img">
                 </div>
             </div>
-            <div class="text-right">
+            <div class="md:text-right">
                 <label class="c-p relative">Coût des runes pour 1 tenta <span class="c-tooltip --absolute" data-before="Conseil : Préparez une dizaine de tentatives, notez la valeur estimée des runes, effectuez vos tenta, puis soustrayez l’ancienne valeur avec la nouvelle. Divisez avec le nombre de tenta que vous avez fait pour avoir une bonne moyenne"><sup  class="c-icon icon-help_outline_black_24dp"></sup></span></label>
             </div>
             <div class="relative">
@@ -74,7 +74,7 @@
                 </div>
                 <p class="p-cout-tenta-cent c-p text-xs" v-if="coutRunePassage !== 0"><span class="font-bold">{{$nuxt.$numberWithSpaces(coutRunePassage)}}</span>k pour {{nbTentaMoyen}} tenta</p>
             </div>
-            <div class="text-right">
+            <div class="md:text-right">
                 <label class="c-p">Prix de vente</label>
             </div>
             <div>
