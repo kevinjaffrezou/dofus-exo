@@ -20,11 +20,11 @@
 export default {
     methods: {
         openNewItem: function() {
-            if(this.$route.path !== '/exos') this.$router.push('/exos')
+            if(this.$route.path !== '/') this.$router.push('/')
             this.$store.commit('OPEN_NEWITEM')
         },
         openStatistics: function() {
-            if(this.$route.path !== '/exos') this.$router.push('/exos')
+            if(this.$route.path !== '/') this.$router.push('/')
             this.$store.commit('OPEN_STATISTICS')
         }
     }

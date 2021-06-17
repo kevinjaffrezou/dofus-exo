@@ -48,7 +48,10 @@ export default {
       this.$store.commit('CLOSE_STATISTICS')
     },
     async fetch() {
-      const items = await this.$nuxt.$DB.inventory.toArray();
+      const demoItems = await this.$content('db/dofus-exo-db').fetch()
+      this.$nuxt.$DB.inventory.clear()
+      this.$nuxt.$DB.inventory.bulkAdd(demoItems.data.data[0].rows)
+      const items = await this.$nuxt.$DB.inventory.toArray()
       items.reverse()
       this.$store.commit('items/ADD_ITEMS', items)
     },
@@ -56,38 +59,6 @@ export default {
     async asyncData({ $content }) {
       const equipements = await $content('/').fetch()
       return { equipements }
-    },
-    mounted() {
-      const vm = this;
-      (async function() {
-        const demoItems = await vm.$content('dofus-exo-db').fetch()
-            try {
-                vm.$nuxt.$DB.inventory.clear()
-                vm.$nuxt.$DB.inventory.bulkAdd(demoItems.data.data[0].rows)
-
-                let items = await vm.$nuxt.$DB.inventory.toArray();
-                items.reverse()
-                vm.$store.commit('items/ADD_ITEMS', items)
-            }
-            catch {
-                console.log("err");
-                vm.$toast.show({
-                    type: 'danger',
-                    title: 'Erreur',
-                    timeout: 20,
-                    message: "La base de données n'a pas pu être importé",
-                })
-
-            }
-        })();
-
-        this.$toast.show({
-          type: 'info',
-          title: 'Version de démonstration',
-          message: 'Vous êtes sur la démo de Dofus exo, rechargez la page pour reset les données',
-          primary: { label: "Se rendre sur l'application", action: () => window.location.href = "https://dofus-exo.fr"},
-          timeout: false,
-        })
     }
 }
 </script>
