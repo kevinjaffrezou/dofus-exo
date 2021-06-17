@@ -60,7 +60,7 @@ export default {
     mounted() {
       const vm = this;
       (async function() {
-        const demoItems = await vm.$content('/dofus-exo-db').fetch()
+        const demoItems = await vm.$content('dofus-exo-db').fetch()
             try {
                 vm.$nuxt.$DB.inventory.clear()
                 vm.$nuxt.$DB.inventory.bulkAdd(demoItems.data.data[0].rows)
