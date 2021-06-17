@@ -7,8 +7,8 @@
                     <p class="leading-relaxed text-lg">Dofus exo est une application web qui vous permet d'<strong>historiser l'ensemble de vos exos</strong> en y sauvegardant leurs coûts ainsi que leurs prix de vente afin de calculer le benefice total de vos items.</p>
                     <img loading="lazy" src="/img/dofus-exo.jpg" alt="" class="c-img m-auto mb-4" width="828" height="556">
                     <div class="flex justify-center">
-                        <NuxtLink to="/exos" class="c-link"><TheButton class="--primary">Aller au dashboard</TheButton></NuxtLink>
-                        <a href="https://demo.dofus-exo.fr/" target="_blank" class="c-link">Voir la démo</a>
+                        <NuxtLink to="/exos" class="c-link mx-4"><TheButton class="--primary">Aller au dashboard</TheButton></NuxtLink>
+                        <a href="https://demo.dofus-exo.fr/" target="_blank" class="mx-4 flex items-center button --grey30 --stroked ">Voir la démo</a>
                     </div>
                 </div>
             </div>

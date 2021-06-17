@@ -11,7 +11,7 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .button {
     text-align: center;
     font-weight: 600;
