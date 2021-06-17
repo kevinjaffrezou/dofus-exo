@@ -1,11 +1,14 @@
 module.exports = {
-  purge: [
-    './components/**/*.{vue,js}',
-    './layouts/**/*.vue',
-    './pages/**/*.vue',
-    './plugins/**/*.{js,ts}',
-    './nuxt.config.{js,ts}'
-  ],
+  purge: {
+    content: [
+      `components/**/*.{vue,js}`,
+      `layouts/**/*.vue`,
+      `pages/**/*.vue`,
+      `plugins/**/*.{js,ts}`,
+      `nuxt.config.{js,ts}`,
+      'node_modules/tv-*/dist/tv-*.umd.min.js'
+    ]
+  },
   darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {},
@@ -13,8 +16,5 @@ module.exports = {
   variants: {
     extend: {},
   },
-  plugins: [],
-  content: [
-    './node_modules/tv-toast/**/*.vue'
-  ]
+  plugins: []
 }
