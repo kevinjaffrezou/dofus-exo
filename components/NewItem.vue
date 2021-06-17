@@ -7,7 +7,7 @@
             <div class="c-badge">
                 <img :src="selectedItem.img" />
             </div>
-            <div class="c-addon-container flex-1 md-mx-9 u-margin-t-20-md-down">
+            <div class="c-addon-container flex-1 md:mx-9 u-margin-t-20-md-down">
                 <span class="c-icon icon-search_black_24dp"></span>
                 <input v-model="searchInput" type="text" class="c-input" placeholder="Rechercher un item Dofus">
                 <ul class="c-selectbox" v-if="items.length">
