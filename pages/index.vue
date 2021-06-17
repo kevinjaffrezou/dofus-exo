@@ -37,49 +37,50 @@
 
 <script>
 export default {
-    data: () => {
-      return {
-        loading: true
-      }
-    },
-    computed: {
-        getSettings: function () {
-            return this.$store.getters['getSettings']
-        },
-        getModalDeleteItem: function () {
-            return this.$store.getters['getModalDeleteItem']
-        },
-        getModalArchiveItem: function () {
-            return this.$store.getters['getModalArchiveItem']
-        }
-    },
-    destroyed() {
-      this.$store.commit('CLOSE_NEWITEM')
-      this.$store.commit('CLOSE_STATISTICS')
-    },
-    async fetch() {
-      this.$nuxt.$DB.inventory.clear()
-      this.$nuxt.$DB.inventory.bulkAdd(this.demoItems.data.data[0].rows)
-      const items = await this.$nuxt.$DB.inventory.toArray()
-      items.reverse()
-      this.$store.commit('items/ADD_ITEMS', items)
-
-      this.loading = false
-
-      this.$toast.show({
-        type: 'info',
-        title: 'Version de démonstration',
-        message: 'Vous êtes sur la démo de Dofus exo, rechargez la page pour reset les données',
-        primary: { label: "Se rendre sur l'application", action: () => window.location.href = "https://dofus-exo.fr"},
-        timeout: false,
-      })
-    },
-    fetchOnServer: false,
-    async asyncData({ $content }) {
-      const equipements = await $content('/').fetch()
-      const demoItems = await $content('db/dofus-exo-db').fetch()
-      return { equipements, demoItems }
+  data: () => {
+    return {
+      loading: true
     }
+  },
+  computed: {
+      getSettings: function () {
+          return this.$store.getters['getSettings']
+      },
+      getModalDeleteItem: function () {
+          return this.$store.getters['getModalDeleteItem']
+      },
+      getModalArchiveItem: function () {
+          return this.$store.getters['getModalArchiveItem']
+      }
+  },
+  destroyed() {
+    this.$store.commit('CLOSE_NEWITEM')
+    this.$store.commit('CLOSE_STATISTICS')
+  },
+  async fetch() {
+    this.$nuxt.$DB.inventory.clear()
+    this.$nuxt.$DB.inventory.bulkAdd(this.demoItems.data.data[0].rows)
+    const items = await this.$nuxt.$DB.inventory.toArray()
+    items.reverse()
+    this.$store.commit('items/ADD_ITEMS', items)
+
+    this.loading = false
+  },
+  fetchOnServer: false,
+  async asyncData({ $content }) {
+    const equipements = await $content('/').fetch()
+    const demoItems = await $content('db/dofus-exo-db').fetch()
+    return { equipements, demoItems }
+  },
+  mounted() {
+    this.$toast.show({
+      type: 'info',
+      title: 'Version de démonstration',
+      message: 'Vous êtes sur la démo de Dofus exo, rechargez la page pour reset les données',
+      primary: { label: "Se rendre sur l'application", action: () => window.location.href = "https://dofus-exo.fr"},
+      timeout: false,
+    })
+  }
 }
 </script>
 
