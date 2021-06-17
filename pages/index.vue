@@ -1,5 +1,10 @@
 <template>
   <div>
+    <transition name="fade">
+      <div v-if="loading" class="loading-page">
+        <div class="c-h1 loading">Chargement des données test...</div>
+      </div>
+    </transition>
     <transition name="fadeup">
       <Statistics v-if="getSettings.openStatistics"></Statistics>
     </transition>
@@ -32,6 +37,11 @@
 
 <script>
 export default {
+    data: () => {
+      return {
+        loading: true
+      }
+    },
     computed: {
         getSettings: function () {
             return this.$store.getters['getSettings']
@@ -48,23 +58,51 @@ export default {
       this.$store.commit('CLOSE_STATISTICS')
     },
     async fetch() {
-      const demoItems = await this.$content('db/dofus-exo-db').fetch()
       this.$nuxt.$DB.inventory.clear()
-      this.$nuxt.$DB.inventory.bulkAdd(demoItems.data.data[0].rows)
+      this.$nuxt.$DB.inventory.bulkAdd(this.demoItems.data.data[0].rows)
       const items = await this.$nuxt.$DB.inventory.toArray()
       items.reverse()
       this.$store.commit('items/ADD_ITEMS', items)
+
+      this.loading = false
+
+      this.$toast.show({
+        type: 'info',
+        title: 'Version de démonstration',
+        message: 'Vous êtes sur la démo de Dofus exo, rechargez la page pour reset les données',
+        primary: { label: "Se rendre sur l'application", action: () => window.location.href = "https://dofus-exo.fr"},
+        timeout: false,
+      })
     },
     fetchOnServer: false,
     async asyncData({ $content }) {
       const equipements = await $content('/').fetch()
-      return { equipements }
+      const demoItems = await $content('db/dofus-exo-db').fetch()
+      return { equipements, demoItems }
     }
 }
 </script>
 
-<style>
+<style lang="scss">
 #toasts {
   margin-top: 40px;
+}
+
+.loading-page {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+  background-color: hsla(235, 11%, 23%, .8);
+  z-index: map-get($zindex, loading);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .loading {
+    color: white;
+  }
 }
 </style>

@@ -35,6 +35,7 @@ $shadow-large: 0px 5px 13px rgba(0, 0, 0, 0.3);
 
 // Zindex
 $zindex: (
+    loading: 2000,
     modal: 1001,
     modal-backdrop: 1000,
     dropdown: 50
