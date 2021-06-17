@@ -1,4 +1,4 @@
-const OG_TITLE = 'Dofus exo | Stockez la liste de vos exos'
+const OG_TITLE = '👀 Demo Dofus exo | Stockez la liste de vos exos'
 const OG_DESCRIPTION = "Historiser l'ensemble de vos exos Dofus en y sauvegardant leurs coûts ainsi que leurs prix de vente afin de calculer le benefice total de vos items."
 const OG_IMAGE = 'https://dofus-exo.fr/opengraph.jpg'
 
