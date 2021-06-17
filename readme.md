@@ -1,4 +1,4 @@
-# Dofus exo
+# Demo Dofus exo
 
 Web application built with NuxtJs and Dexie (IndexedDB)
 
