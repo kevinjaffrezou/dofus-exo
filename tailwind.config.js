@@ -4,7 +4,7 @@ module.exports = {
     './layouts/**/*.vue',
     './pages/**/*.vue',
     './plugins/**/*.{js,ts}',
-    './nuxt.config.{js,ts}'
+    './nuxt.config.{js,ts}',
   ],
   darkMode: false, // or 'media' or 'class'
   theme: {
@@ -15,6 +15,7 @@ module.exports = {
   },
   plugins: [],
   content: [
+    'node_modules/tv-*/dist/tv-*.umd.min.js',
     './node_modules/tv-toast/**/*.vue'
   ]
 }
