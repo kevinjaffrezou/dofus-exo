@@ -105,14 +105,14 @@ export default {
 
 .item {
     &__img {
-        height: 40px;
+        height: 50px;
     }
 }
 
 .type-exo {
     position: relative;
-    height: 35px;
-    width: 35px;
+    height: 36px;
+    width: 36px;
 
     img,
     .c-icon {
@@ -123,7 +123,7 @@ export default {
     }
 
     img {
-        width: 32px;
+        width: 100%;
     }
 
     .c-icon {

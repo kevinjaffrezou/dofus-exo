@@ -12,18 +12,18 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@nuxt/content": "^1.14.0",
+    "@nuxt/http": "^0.6.4",
     "dexie": "^3.0.3",
     "dexie-export-import": "^1.0.0",
     "downloadjs": "^1.4.7",
     "json-2-csv": "^3.14.0",
     "lodash": "^4.17.21",
     "nuxt": "^2.15.4",
-    "nuxt-tailvue": "^1.0.90"
+    "nuxt-tailvue": "^1.0.95"
   },
   "devDependencies": {
     "@nuxtjs/style-resources": "^1.0.0",
-    "@nuxtjs/tailwindcss": "^4.0.3",
+    "@nuxtjs/tailwindcss": "^4.2.1",
     "@tailwindcss/postcss7-compat": "^2.1.2",
     "autoprefixer": "^9.8.6",
     "node-sass": "^5.0.0",

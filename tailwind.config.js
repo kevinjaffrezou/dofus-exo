@@ -9,7 +9,8 @@ module.exports = {
       'node_modules/tv-*/dist/tv-*.umd.min.js'
     ]
   },
-  darkMode: false, // or 'media' or 'class'
+  darkMode: false, // or 'media' or 'class',
+  mode: 'jit',
   theme: {
     extend: {},
   },

@@ -47,13 +47,15 @@
                 </button>
             </div>
             <div class="row-span-4">
-                <label class="c-p">Nb de tentatives :</label>
-                <input type="number" class="c-input --no-border-radius-bottom --lg mt-1" :value="getActiveItem.attempts" @input="updateItem('attempts', $event, true)">
-                <div class="flex">
-                    <button class="p-button" @click="incrementAttemps(1)">+1</button>
-                    <button class="p-button" @click="incrementAttemps(10)">+10</button>
+                <div>
+                    <label class="c-p">Nb de tentatives :</label>
+                    <input type="number" class="c-input --no-border-radius-bottom --lg mt-1" :value="getActiveItem.attempts" @input="updateItem('attempts', $event, true)">
+                    <div class="flex">
+                        <button class="p-button" @click="incrementAttemps(1)">+1</button>
+                        <button class="p-button" @click="incrementAttemps(10)">+10</button>
+                    </div>
                 </div>
-                <TheButton @click.native="saveItem()" class="--primary mt-5 w-full">Passé !</TheButton>
+                <TheButton @click.native="saveItem()" class="--primary mt-[23px] w-full">Passé !</TheButton>
             </div>
             <div class="md:text-right">
                 <label class="c-p relative">Coût d'acquisition <span class="c-tooltip --absolute" data-before="Prix d’achat de l’item ou coût total des ressources"><sup  class="c-icon icon-help_outline_black_24dp"></sup></span></label>
@@ -183,7 +185,7 @@ export default {
 }
 .p-button {
     width: 50%;
-    height: 35px;
+    height: 36px;
     line-height: 33px;
     border: 1px solid $grey20;
     color: $grey40;

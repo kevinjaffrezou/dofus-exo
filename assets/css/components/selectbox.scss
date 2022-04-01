@@ -7,7 +7,7 @@
     border-radius: $border-radius;
     padding: 10px;
     box-shadow: $shadow-default;
-    max-height: 250px;
+    max-height: 251px;
     overflow-y: scroll;
     z-index: map-get($zindex, dropdown);
 
@@ -18,16 +18,14 @@
     li {
         display: flex;
         flex-direction: row;
-        height: 35px;
-        line-height: 35px;
+        height: 36px;
+        line-height: 36px;
         border-radius: $border-radius;
         padding-right: 10px;
         cursor: pointer;
         transition: background-color $transition;
 
         img {
-            width: 35px;
-            height: 35px;
             margin-right: 14px;
         }
 

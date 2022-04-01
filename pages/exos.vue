@@ -11,7 +11,7 @@
         <div class="col-span-10">
           <div class="container-730">
             <transition name="fadeup">
-              <NewItem :dofusEquiments="equipements" v-if="getSettings.openNewItem"></NewItem>
+              <NewItem v-if="getSettings.openNewItem"></NewItem>
             </transition>
             <FormItem></FormItem>
           </div>
@@ -52,10 +52,6 @@ export default {
       items.reverse()
       this.$store.commit('items/ADD_ITEMS', items)
     },
-    fetchOnServer: false,
-    async asyncData({ $content }) {
-      const equipements = await $content('/').fetch()
-      return { equipements }
-    }
+    fetchOnServer: false
 }
 </script>

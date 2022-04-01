@@ -72,14 +72,14 @@
                             <p>{{item.id}}</p>
                         </td>
                         <td>
-                            <img class="w-8" :src="item.img" alt="">
+                            <img class="w-[38px]" :src="item.img" alt="">
                         </td>
                         <td>
                             <p>{{item.name}}</p>
                         </td>
                         <td>
                             <span v-if="item.typeExo === 'none'" class="c-icon icon-highlight_off_black_24dp"></span>
-                            <img class="w-8" v-else :src="'/img/'+item.typeExo+'.png'" alt="">
+                            <img class="w-[38px]" v-else :src="'/img/'+item.typeExo+'.png'" alt="">
                         </td>
                         <td class="text-right">
                             <p>{{item.attempts}}</p>

@@ -1,8 +1,8 @@
 .c-button-radio {
     position: relative;
     display: block;
-    height: 35px;
-    width: 35px;
+    height: 36px;
+    width: 36px;
     border: 1px solid $grey20;
     background-color: white;
     border-radius: 2px;
@@ -38,8 +38,7 @@
         transform: translate(-50%, -50%);
         max-width: none;
         opacity: .5;
-        height: 35px;
-        width: 35px;
+        width: 36px;
     }
 }
 
