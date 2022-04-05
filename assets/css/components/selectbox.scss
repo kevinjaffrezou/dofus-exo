@@ -32,6 +32,11 @@
         &:hover {
             background-color: $blue20;
         }
+
+        &.is-focus {
+            outline: 0;
+            background-color: $blue20;
+        }
     }
 
     li + li {

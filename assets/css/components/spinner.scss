@@ -1,0 +1,29 @@
+.c-spinner {
+    display: inline-block;
+    width: 26px;
+    height: 26px;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    right: 10px;
+}
+
+.c-spinner::after {
+    content: '';
+    display: block;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    border: 3px solid $blue20;
+    border-color: $blue20 transparent $blue20 transparent;
+    animation: dualRing 1.2s linear infinite;
+}
+@keyframes dualRing {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
