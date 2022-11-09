@@ -89,7 +89,8 @@ export default {
             this.selectedItem = {img: '/img/default-item.png'} // Remove current search
             if(this.searchInput === '' ) return
             this.isLoading = true
-            const equipements = await this.$http.$get(`https://dofus-api.vercel.app/api?name=${this.searchInput}&cannotFm=false&limit=6`)
+            // const equipements = await this.$http.$get(`https://dofus-api.vercel.app/api?name=${this.searchInput}&cannotFm=false&limit=6`)
+            const equipements = await this.$http.$get(`http://176.31.163.107/equipements?name=${this.searchInput}&cannotFm=false&limit=6`)
             this.isLoading = false
             
             equipements.forEach(element => {
